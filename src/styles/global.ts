@@ -4,7 +4,7 @@ export const GlobalStyles = globalCss({
   '*': {
     margin: 0,
     padding: 0,
-    overflow: "hidden !important",
+    // overflow: "hidden",
     boxSizing: 'border-box',
   },
 

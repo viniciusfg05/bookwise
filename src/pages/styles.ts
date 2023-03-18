@@ -7,6 +7,7 @@ export const ContainerHome = styled("div", {
   maxWidth: "90rem",
   height: "100vh",
   margin: "0 auto",
+  overflow: "hidden",
 
   "@media (max-width: 768px)": {
     padding: "0"
@@ -46,6 +47,8 @@ export const ContentImage = styled("div", {
 
 export const ImageBackground = styled(Image, {
   height: "100%",
+  borderRadius: "$lg",
+
   "@media (max-width: 768px)": {
     width: "100%",
     borderRadius: "$lg",

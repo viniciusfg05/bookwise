@@ -25,10 +25,15 @@ import { signIn, useSession } from "next-auth/react";
 
 export default function Home() {
   const session = useSession();
-
+  
   async function handleConnectGoogle() {
     await signIn("google");
   }
+
+  async function handleConnectGitHub() {
+    await signIn("gitHub");
+  }
+  
   return (
     <ContainerHome>
       {/* <p>{JSON.stringify(session.data)}</p> */}
@@ -53,7 +58,7 @@ export default function Home() {
                 Entrar com Google
               </ButtonStyles>
 
-              <ButtonStyles>
+              <ButtonStyles onClick={handleConnectGitHub}>
                 <FaGithub />
                 Entrar com Github
               </ButtonStyles>

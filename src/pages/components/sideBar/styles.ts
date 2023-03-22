@@ -1,4 +1,4 @@
-import {styled} from "../../../../../styles/stitches.config"
+import {styled} from "../../../styles/stitches.config"
 
 export const ConteinerSideBar = styled("div", {
   padding: "1rem",

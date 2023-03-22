@@ -1,7 +1,7 @@
-import { BackgroundSidebar } from "../../../../components/backgroundSidebar";
-import { SignOutLogin } from "../../../../components/signOutLogin";
+import { BackgroundSidebar } from "../backgroundSidebar";
+import { SignOutLogin } from "../signOutLogin";
 import { ConteinerSideBar, ContentSidebar, LiContent } from "./styles";
-import Logo from "../../../../../../assets/books/logo.svg";
+import Logo from "../../../../assets/books/logo.svg";
 import Image from "next/image"
 import Link from "next/link"
 import { Binoculars, ChartLineUp } from "@phosphor-icons/react";

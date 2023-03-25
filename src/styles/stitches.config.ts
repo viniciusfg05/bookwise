@@ -3,6 +3,12 @@
 import { createStitches, defaultThemeMap } from '@stitches/react';
 
 export const { styled, getCssText } = createStitches({
+  media: {
+    bp1: '(min-width: 640px)',
+    bp2: '(max-width: 768px)',
+    bp3: '(min-width: 769px)',
+  },
+
   theme: {
     fonts: {
       default: 'Nunito, sans-serif',

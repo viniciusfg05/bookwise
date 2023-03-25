@@ -1,77 +1,20 @@
-import {
-  BackgroundSidebar,
-  ContainerContent,
-  ContainerHome,
-  ConteinerFavoviteBooks,
-  ConteinerSideBar,
-  ContentStart,
-} from "./styles";
-import sideBar from "../../../../assets/sideBar.svg";
-import Image from "next/image";
-import ElipseTop from "../../../../assets/elipseTop.svg";
-import ElipseCentro from "../../../../assets/elipseCentro.svg";
-import ElipseTopLeft from "../../../../assets/elipseTopLeft.svg";
-import ElipseBotton from "../../../../assets/elipseBotton.svg";
+import { ContainerHome, ContentStart } from "./styles";
+import { useState } from "react";
+import { SideBar } from "../../components/sideBar";
+import { Content } from "./components/content";
+import { FavoriteBooks } from "../../components/favoviteBooks";
 
 export default function Start() {
   return (
     <ContainerHome>
       <ContentStart>
-        <ConteinerSideBar>
-          {/* <Image src={sideBar} alt="" /> */}
 
-          <BackgroundSidebar>
-            {/* <Image src={ElipseTop} alt="" />
-            <Image src={ElipseCentro} alt="" />
-            <Image src={ElipseTopLeft} alt="" />
-            <Image src={ElipseBotton} alt="" /> */}
-          </BackgroundSidebar>
-        </ConteinerSideBar>
+        <SideBar />
 
-        <ContainerContent>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-          <h1>Conteudooooo</h1>
-        </ContainerContent>
+        <Content />
 
-        <ConteinerFavoviteBooks>
-          <h1>Livros favoritos</h1>
-        </ConteinerFavoviteBooks>
+        <FavoriteBooks />
+
       </ContentStart>
     </ContainerHome>
   );

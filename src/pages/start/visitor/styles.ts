@@ -7,40 +7,23 @@ export const ContainerHome = styled("div", {
   height: "100vh",
   margin: "0 auto",
   color: "white",
-  overflow: "visible",
 
   "@media (max-width: 768px)": {
-    padding: "0",
+    // padding: "0"
   },
-});
+})
 
 export const ContentStart = styled("div", {
-  width: "1440px",
   display: "grid",
-  gridTemplateAreas: `
-    "nav main main footer"
-    "nav main main footer"
-    "nav main main footer"
-  `,
-  height: "100vh",
-  gridTemplateColumns: "1f 60% 1f",
-  gridTemplateRows: "1f 60% 1f",
-});
+  gridTemplateColumns: "22.78% 47.22% 25.3472%",
+  height: "100%",
+  width: "100%",
 
-export const ConteinerSideBar = styled("nav", {
-  gridArea: "nav",
-  position: "relative",
-});
+  "@media (max-width: 768px)": {
+    all: "unset"
+  }
+})
 
-export const BackgroundSidebar = styled("div", {
-  height: "100vh",
-  width: "25rem",
-  background: "$gray600",
-  position: "fixed",
-  top: "0",
-  left: "0",
-  zIndex: "99",
-});
 
 export const ContainerContent = styled("main", {
   gridArea: "main",

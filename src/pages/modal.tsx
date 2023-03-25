@@ -1,7 +1,6 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { styled, keyframes } from "@stitches/react";
-import { violet, blackA, mauve, green } from "@radix-ui/colors";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 
 const DialogDemo = () => (
@@ -50,7 +49,7 @@ const contentShow = keyframes({
 });
 
 const DialogOverlay = styled(Dialog.Overlay, {
-  backgroundColor: blackA.blackA9,
+  backgroundColor: "$gray100",
   position: "fixed",
   inset: 0,
   animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,

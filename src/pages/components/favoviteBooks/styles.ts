@@ -15,7 +15,9 @@ export const ConteinerFavoviteBooks = styled("div", {
     a: {
       color: "$purple100",
       textDecoration:"none",
-    }
+    },
+
+
   },
 
   "@media(max-width: 768px)": {
@@ -121,17 +123,16 @@ export const AssessmentContent = styled("div", {
   button: {
     all: "unset",
     cursor: "pointer",
-    width: "1rem",
-    height: "1rem",
+    // width: "1rem",
+    // height: "1rem",
+    lineHeight: 0,
 
     svg: {
       color: "$purple100",
+
     }
   },
 
   "@media(max-width: 768px)": {
-    marginleft: "auto",
-    display: "flex",
-    width: "inherit",
   }
 })

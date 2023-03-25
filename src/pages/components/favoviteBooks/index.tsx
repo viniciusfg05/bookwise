@@ -35,7 +35,7 @@ export function FavoriteBooks() {
                   <span>Zeno Rocha</span>
                 </header>
                 <AssessmentContent>
-                  <RatingStarts />
+                  <RatingStarts size="1rem"/>
                 </AssessmentContent>
               </FavoviteBooks>
             </FavoviteBooksContent>
@@ -53,7 +53,7 @@ export function FavoriteBooks() {
                   <span>Zeno Rocha</span>
                 </header>
                 <AssessmentContent>
-                  <RatingStarts />
+                  <RatingStarts size="1rem"/>
                 </AssessmentContent>
               </FavoviteBooks>
             </FavoviteBooksContent>

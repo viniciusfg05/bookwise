@@ -82,6 +82,7 @@ export const LiContent = styled("li", {
   paddingLeft: "1rem",
   height: "100%",
 
+
   
   a: {
     textDecoration: "none",
@@ -89,6 +90,15 @@ export const LiContent = styled("li", {
     display: "flex",
     alignContent: "end",
     color: "$gray400",
+    transition: "0.3s",
+
+    svg: {
+      marginRight: "0.5rem",
+    },
+
+    "&:hover": {
+      color: "$white"
+    },
   },
 
   "@media (max-width: 768px)": {

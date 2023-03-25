@@ -1,5 +1,6 @@
-
-import { styled } from "../../../styles/stitches.config"
+import { styled } from "../../../styles/stitches.config";
+import ElipseTop from "../../../../assets/elipseTop.svg";
+import { after } from "node:test";
 
 export const ContainerHome = styled("div", {
   maxWidth: "90rem",
@@ -9,41 +10,42 @@ export const ContainerHome = styled("div", {
   overflow: "visible",
 
   "@media (max-width: 768px)": {
-    padding: "0"
-  }
-})
+    padding: "0",
+  },
+});
 
 export const ContentStart = styled("div", {
+  width: "1440px",
   display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
-  height: "100%",
-  overflow: "visible",
-})
+  gridTemplateAreas: `
+    "nav main main footer"
+    "nav main main footer"
+    "nav main main footer"
+  `,
+  height: "100vh",
+  gridTemplateColumns: "1f 60% 1f",
+  gridTemplateRows: "1f 60% 1f",
+});
 
-export const ConteinerSideBar = styled("div", {
-  height: "100%",
-
-  img: {
-    height: "100vh",
-    position: "fixed"
-  }
-})
+export const ConteinerSideBar = styled("nav", {
+  gridArea: "nav",
+  position: "relative",
+});
 
 export const BackgroundSidebar = styled("div", {
-  height: "911px",
-  background: "$gray700",
+  height: "100vh",
+  width: "25rem",
+  background: "$gray600",
+  position: "fixed",
+  top: "0",
+  left: "0",
+  zIndex: "99",
+});
 
-  img: {
-    height: "100vh",
-  }
-})
-
-export const ContainerContent = styled("div", {})
-export const ConteinerFavoviteBooks = styled("div", {
-  height: "100%",
-  h1: {
-    height: "100vh",
-    position: "fixed"
-  }
-})
-
+export const ContainerContent = styled("main", {
+  gridArea: "main",
+  position: "relative",
+});
+export const ConteinerFavoviteBooks = styled("footer", {
+  gridArea: "footer",
+});

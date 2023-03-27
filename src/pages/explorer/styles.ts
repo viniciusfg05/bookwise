@@ -202,7 +202,17 @@ export const BooksMainConteiner = styled("div", {
 })
 
 
-export const DialogOverlay = styled(Dialog.Overlay, {})
+export const DialogTrigger = styled(Dialog.Trigger, {
+})
+
+export const ButtonContent = styled("button", {
+    all: "unset",
+    backgroundColor: "$gray700",
+    width: "100%",
+    height: "100%",
+    borderRadius: "$md"
+})
+
 export const DialogContent = styled(Dialog.Content, {})
 export const DialogTitle = styled(Dialog.Title, {})
 export const DialogDescription = styled(Dialog.Description, {})

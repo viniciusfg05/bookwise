@@ -2,17 +2,17 @@ import { Binoculars } from "@phosphor-icons/react";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { SideBar } from "../components/sideBar";
-import * as Dialog from '@radix-ui/react-dialog';
 import {
   BooksContainer,
   BooksContent,
   BooksMainConteiner,
+  ButtonContent,
   ContainerExplorer,
   ContentExplorer,
   DialogContent,
   DialogDescription,
-  DialogOverlay,
   DialogTitle,
+  DialogTrigger,
   ExplorerConteiner,
   LiContent,
 } from "./styles";
@@ -24,6 +24,10 @@ import { AssessmentContent } from "../components/favoviteBooks/styles";
 import { ContainerHome } from "../styles";
 import { ContentStart } from "../start/visitor/styles";
 import { RatingStarts } from "../components/ratingStars";
+import * as Dialog from '@radix-ui/react-dialog';
+import { Books } from "./components/books";
+import { Modal } from "./components/modal";
+
 
 export default function Home() {
   const session = useSession();
@@ -57,13 +61,11 @@ export default function Home() {
     <ContainerExplorer>
       <ContentExplorer>
         <SideBar />
-
         <ExplorerConteiner>
           <header>
             <Binoculars size={32} color="#50B2C0" />
             <h2>Explorar</h2>
           </header>
-
           <nav>
             <ul
               //@ts-ignore
@@ -125,77 +127,10 @@ export default function Home() {
 
           <BooksContainer>
             <section>
-              <BooksContent>
-                <Image
-                  src={HabitosDeDesenvolvedores}
-                  width={108}
-                  height={152}
-                  alt=""
-                />
-                <BooksMainConteiner>
-                  <header>
-                    <p>14 Hábitos de Desenvolvedores Alta...</p>
-                    <span>Zeno Rocha</span>
-                  </header>
-                  <AssessmentContent>
-                    <RatingStarts size="1rem" />
-                  </AssessmentContent>
-                </BooksMainConteiner>
-              </BooksContent>
 
-              <BooksContent>
-                <Image
-                  src={HabitosDeDesenvolvedores}
-                  width={108}
-                  height={152}
-                  alt=""
-                />
-                <BooksMainConteiner>
-                  <header>
-                    <p>14 Hábitos de Desenvolvedores Alta...</p>
-                    <span>Zeno Rocha</span>
-                  </header>
-                  <AssessmentContent>
-                    <RatingStarts size="1rem" />
-                  </AssessmentContent>
-                </BooksMainConteiner>
-              </BooksContent>
-
-              <BooksContent>
-                <Image
-                  src={HabitosDeDesenvolvedores}
-                  width={108}
-                  height={152}
-                  alt=""
-                />
-                <BooksMainConteiner>
-                  <header>
-                    <p>14 Hábitos de Desenvolvedores Alta...</p>
-                    <span>Zeno Rocha</span>
-                  </header>
-                  <AssessmentContent>
-                    <RatingStarts size="1rem" />
-                  </AssessmentContent>
-                </BooksMainConteiner>
-              </BooksContent>
-
-              <BooksContent>
-                <Image
-                  src={HabitosDeDesenvolvedores}
-                  width={108}
-                  height={152}
-                  alt=""
-                />
-                <BooksMainConteiner>
-                  <header>
-                    <p>14 Hábitos de Desenvolvedores Alta...</p>
-                    <span>Zeno Rocha</span>
-                  </header>
-                  <AssessmentContent>
-                    <RatingStarts size="1rem" />
-                  </AssessmentContent>
-                </BooksMainConteiner>
-              </BooksContent>
+              <Books typeFor="page"/>
+              
+              <Books typeFor="page"/>
             </section>
           </BooksContainer>
         </ExplorerConteiner>

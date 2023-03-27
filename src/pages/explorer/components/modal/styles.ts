@@ -13,7 +13,7 @@ const contentShow = keyframes({
 });
 
 export const DialogContent = styled(Dialog.Content, {
-  backgroundColor: "$gray700",
+  backgroundColor: "$gray800",
   position: "fixed",
   maxWidth: "41.25rem",
   width: "100%",
@@ -21,7 +21,27 @@ export const DialogContent = styled(Dialog.Content, {
   right: "0",
   top: "0",
   padding: "3rem",
+  overflow: "auto",
   animation: `${contentShow} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+
+    "&::-webkit-scrollbar": {
+    width: "7px",
+  },
+
+  "&::-webkit-scrollbar-track": {
+    background: "$gray700",
+
+  },
+
+  "&::-webkit-scrollbar-thumb": {
+    background: "$gray500",
+    transition: "0.3s",
+
+  },
+
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "$gray600",
+  },
 
   "&:focus": {
     outline: "none",
@@ -37,7 +57,11 @@ export const DialogContent = styled(Dialog.Content, {
 
 export const BookDetail = styled("div", {
   width: "100%",
+  background: "$gray700",
+  padding: "2rem",
   height: "25.875rem",
+  marginBottom: "2.5rem",
+  borderRadius: "$md",
 });
 
 export const BookContent = styled("div", {
@@ -78,6 +102,68 @@ export const ContentInfo = styled("div", {
   },
 });
 
-export const Divide = styled("div", {
-  border: "1px solid red",
+export const AssessmentsContent = styled("div", {
+  width: "100%",
+
+  header: {
+    marginBottom: "1.375rem",
+
+    p: {
+      color: "$gray200",
+      
+    }
+  }
 });
+
+export const Assessments = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  background: "$gray700",
+  transition: "0.3s",
+  padding: "1.5rem",
+  borderRadius: "$md",
+  marginBottom: "0.75rem",
+
+  "&:hover": {
+    background: "$gray600",
+  },
+
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    
+    svg: {
+      color: "$purple100"
+    }
+  },
+
+  "> body": {
+    background: "transparent",
+    width: "100%",
+    color: "$gray300",
+  }
+});
+
+export const Profile = styled("div", {
+  display: "flex",
+
+  cite: {
+    display: "flex",
+    flexDirection: "column",
+    fontStyle: "normal",
+    marginLeft: "1rem",
+
+    strong: {
+      color: "$white"
+    },
+
+    time: {
+      color: "$gray400"
+    }
+  }
+});
+
+
+

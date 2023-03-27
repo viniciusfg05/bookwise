@@ -8,7 +8,7 @@ interface RatingStartsProps {
 
 export function RatingStarts({ size }: RatingStartsProps) {
   const [selectedStarts, setSelectedStarts] = useState(0)
-  const [totalStartsPoints, setTotalStartsPoints] = useState(1.5)
+  const [totalStartsPoints, setTotalStartsPoints] = useState(4.5)
 
   function handleStartSelect(value: number) {
     setSelectedStarts(value)

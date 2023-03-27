@@ -1,20 +1,15 @@
-import { MagnifyingGlass, User } from "@phosphor-icons/react";
-import { RatingStarts } from "../components/ratingStars";
+import { CaretLeft, MagnifyingGlass } from "@phosphor-icons/react";
 import { SideBar } from "../components/sideBar";
 import {
-  AssessmentsTheUsersContainer,
-  AssessmentsTheUsersContent,
   ContainerProfile,
-  ContentCite,
   ContentProfile,
   Input,
   InputConteiner,
-  MainContainer,
-  MainContent,
-  ProfileConteiner,
+  ProfileConteiner
 } from "./styles";
-import Image from "next/image";
-import HabitosDeDesenvolvedores from "../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png";
+import Link from "next/link"
+import { AssessnentsUsers } from "./components/assessnentsUsers";
+import { UserProfile } from "./components/userProfile";
 
 export default function Profile() {
   return (
@@ -23,88 +18,26 @@ export default function Profile() {
         <SideBar />
 
         <ProfileConteiner>
-          <header>
+          {/* <header>
             <User size={32} color="#50B2C0" />
             <h2>Perfil</h2>
-          </header>
+          </header> */}
+
+          <Link href="">
+            <CaretLeft size={20} color="#50B2C0" />
+            <p>voltar</p>
+          </Link>
 
           <InputConteiner>
             <Input placeholder="Buscar livro avaliado" />
-
             <MagnifyingGlass />
           </InputConteiner>
 
-          <AssessmentsTheUsersContainer>
-            <AssessmentsTheUsersContent>
-              <MainContainer>
-                <MainContent>
-                  <time>Há 2 dias</time>
-                  <section>
-                    <header>
-                      <Image
-                        src={HabitosDeDesenvolvedores}
-                        width={108}
-                        height={152}
-                        alt=""
-                      />
-
-                      <ContentCite>
-                        <cite>
-                          <strong>14 Habitos desenvolvedores</strong>
-                          <span>Zeno Rocha</span>
-                        </cite>
-                        <RatingStarts size="1rem" />
-                      </ContentCite>
-                    </header>
-
-                    <main>
-                      <p>
-                        Semper et sapien proin vitae nisi. Feugiat neque integer
-                        donec et aenean posuere amet ultrices. Cras fermentum id
-                        pulvinar varius leo a in. Amet libero pharetra nunc
-                        elementum fringilla velit ipsum. Sed vulputate massa
-                        velit nibh... ver mais
-                      </p>
-                    </main>
-                  </section>
-                </MainContent>
-              </MainContainer>
-              <MainContent>
-                <time>Há 2 dias</time>
-                <section>
-                  <header>
-                    <Image
-                      src={HabitosDeDesenvolvedores}
-                      width={108}
-                      height={152}
-                      alt=""
-                    />
-
-                    <ContentCite>
-                      <cite>
-                        <strong>14 Habitos desenvolvedores</strong>
-                        <span>Zeno Rocha</span>
-                      </cite>
-                      <RatingStarts size="1rem" />
-                    </ContentCite>
-                  </header>
-
-                  <main>
-                    <p>
-                      Semper et sapien proin vitae nisi. Feugiat neque integer
-                      donec et aenean posuere amet ultrices. Cras fermentum id
-                      pulvinar varius leo a in. Amet libero pharetra nunc
-                      elementum fringilla velit ipsum. Sed vulputate massa velit
-                      nibh... ver mais
-                    </p>
-                  </main>
-                </section>
-              </MainContent>
-            </AssessmentsTheUsersContent>
-          </AssessmentsTheUsersContainer>
+          <AssessnentsUsers />
         </ProfileConteiner>
 
-        <h1>Outro</h1>
+        <UserProfile />
+
       </ContentProfile>
     </ContainerProfile>
   );

@@ -24,15 +24,31 @@ export const ContentProfile = styled("div", {
 
 export const ProfileConteiner = styled("div", {
   marginTop: "4.5rem",
+
   header: {
     display: "flex",
     gap: "0.75rem",
   },
 
+  "> a": {
+    display: "flex",
+    gap: "0.75rem",
+    color: "$white",
+    fontWeight: "bold",
+    textDecoration: "none"
+  },
+
   "@media(max-width: 768px)": {
+    marginTop: "2rem",
+
+
     header: {
       padding: "0.5rem",
     },
+
+    "> a": {
+      marginBottom: "2rem",
+    }
   },
 });
 
@@ -70,6 +86,7 @@ export const InputConteiner = styled("div", {
 
   "@media(max-width: 768px)": {
     margin: "0.5rem",
+    width: "calc(100% - 1rem)",
   },
 });
 
@@ -79,78 +96,6 @@ export const Input = styled("input", {
   padding: "0.875rem 0.5rem 0.875rem 1.25rem",
 });
 
-export const AssessmentsTheUsersContainer = styled("div", {
-  display: "flex",
-  width: "100%",
 
-  "@media(max-width: 768px)": {
-    padding: "0.5rem",
-  },
-});
 
-export const AssessmentsTheUsersContent = styled("div", {});
 
-export const MainContainer = styled("div", {});
-
-export const MainContent = styled("div", {
-  time: {
-    fontSize: "0.875rem",
-    color: "$gray300",
-  },
-
-  section: {
-    padding: "1.5rem",
-    background: "$gray700",
-    borderRadius: "$md",
-    marginTop: "0.5rem",
-    marginBottom: "1.5rem",
-
-    header: {
-      marginBottom: "1.5rem",
-      display: "flex",
-      width: "100%",
-
-      img: {
-        width: "6.125rem",
-        height: "8.375rem",
-      },
-
-      cite: {
-        display: "flex",
-        flexDirection: "column",
-      },
-    },
-
-    main: {
-      color: "$gray300",
-      fontSize: "0.875rem",
-      lineHeight: "$base",
-    },
-  },
-});
-
-export const ContentCite = styled("div", {
-  width: "100%",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-
-  cite: {
-    fontStyle: "normal",
-
-    strong: {
-      fontSize: "1.125rem",
-    },
-
-    span: {
-      color: "$gray400",
-      fontSize: "0.875rem",
-    },
-  },
-
-  svg: {
-    color: "$purple100",
-  },
-});
-
-// FTe

@@ -1,4 +1,4 @@
-import { styled } from "../../../styles/stitches.config"
+import { styled } from "../../../styles/stitches.config";
 
 export const ConteinerFavoviteBooks = styled("div", {
   // background: "red",
@@ -14,10 +14,8 @@ export const ConteinerFavoviteBooks = styled("div", {
 
     a: {
       color: "$purple100",
-      textDecoration:"none",
+      textDecoration: "none",
     },
-
-
   },
 
   "@media(max-width: 768px)": {
@@ -27,21 +25,17 @@ export const ConteinerFavoviteBooks = styled("div", {
 
     "> header": {
       width: "calc(100% - 2rem)",
-
-    }
-  }
-
-})
+    },
+  },
+});
 
 export const FavoritesConteiner = styled("div", {
   "@media(max-width: 768px)": {
     overflow: "auto",
     width: "100%",
     paddingBottom: "2.5rem",
-
-  }
-
-})
+  },
+});
 
 export const FavoritesContent = styled("div", {
   "@media(max-width: 768px)": {
@@ -53,24 +47,20 @@ export const FavoritesContent = styled("div", {
       display: "flex",
       gap: "1rem",
       width: "100%",
-      
-    }
-  }
-})
-
-
+    },
+  },
+});
 
 export const ContentFavoviteBooks = styled("div", {
-  display: 'flex',
-  height: '12.436875rem',
-  justifyContent: 'space-between',
-  flexDirection: 'column',
-  
-  "@media(max-width: 768px)": {
-    height: '11.436875rem',
+  display: "flex",
+  height: "12.436875rem",
+  justifyContent: "space-between",
+  flexDirection: "column",
 
-  }
-})
+  "@media(max-width: 768px)": {
+    height: "11.436875rem",
+  },
+});
 
 export const FavoviteBooksContent = styled("div", {
   borderRadius: "$md",
@@ -81,8 +71,7 @@ export const FavoviteBooksContent = styled("div", {
   padding: "1rem",
   background: "$gray700",
   marginBottom: "1rem",
-  width: "calc((100% - 3rem)",  
-
+  width: "calc((100% - 3rem)",
 
   img: {
     height: "100%",
@@ -92,9 +81,8 @@ export const FavoviteBooksContent = styled("div", {
   "@media(max-width: 768px)": {
     gap: "0.5rem",
     marginBottom: "0",
-
-  }
-})
+  },
+});
 
 export const FavoviteBooks = styled("div", {
   display: "flex",
@@ -102,24 +90,20 @@ export const FavoviteBooks = styled("div", {
   width: "70%",
   justifyContent: "space-between",
   flexDirection: "column",
-  
+
   p: {
     fontSize: "1rem",
-    color: "$gray100"
+    color: "$gray100",
   },
   span: {
     fontSize: "0.875rem",
-    color: "$gray400"
+    color: "$gray400",
   },
 
-  "@media(max-width: 768px)": {
-
-  }
-})
+  "@media(max-width: 768px)": {},
+});
 
 export const AssessmentContent = styled("div", {
-
-
   button: {
     all: "unset",
     cursor: "pointer",
@@ -129,10 +113,15 @@ export const AssessmentContent = styled("div", {
 
     svg: {
       color: "$purple100",
-
-    }
+    },
   },
 
-  "@media(max-width: 768px)": {
-  }
-})
+  p: {
+    color: "$gray400",
+    fontSize: "0.875rem",
+    fontWeight: "normal",
+    marginTop: "0.3rem",
+  },
+
+  "@media(max-width: 768px)": {},
+});

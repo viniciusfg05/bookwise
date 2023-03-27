@@ -1,5 +1,5 @@
+import { useRouter } from "next/router"
 import {styled} from "../../../styles/stitches.config"
-
 export const ConteinerSideBar = styled("div", {
   padding: "1rem",
 
@@ -83,7 +83,6 @@ export const LiContent = styled("li", {
   height: "100%",
 
 
-  
   a: {
     textDecoration: "none",
     alignItems: "end",
@@ -106,10 +105,9 @@ export const LiContent = styled("li", {
     alignItems: "start",
 
   },
-
   variants: {
     activeUrl: {
-      desktop: {
+      true: {
         alignItems: "center",
         borderRadius: "9999px",
         borderLeft: "4px solid",
@@ -118,22 +116,25 @@ export const LiContent = styled("li", {
         a: {
           color: "$white",
 
-        }
-      },
-      mobile: {
-        "&::after": {
-          content: "",
-          height: "0",
-          width: "0",
         },
         
-        a: {
-          borderBottom: "3px solid #7FD1CC",
-          paddingBottom: "0.4rem",
-          color: "$white",
-          borderRadius: "4px",
+        "@media (max-width: 768px)":{
+          all: "unset",
+
+          "&::after": {
+            content: "",
+            height: "0",
+            width: "0",
+          },
+          
+          a: {
+            borderBottom: "3px solid #7FD1CC",
+            paddingBottom: "0.4rem",
+            color: "$white",
+            borderRadius: "4px",
+          }
         }
-      }
+      },
     },
     mobile: {
       true: {

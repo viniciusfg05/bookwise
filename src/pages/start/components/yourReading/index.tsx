@@ -1,9 +1,10 @@
 import { AssessmentContent, MainContainer, MainContent, MyBooksContainer, MyBooksContent, YourReadingsMain } from "./styles";
 import { Star, StarHalf } from "@phosphor-icons/react";
 import { useState } from "react";
-import HabitosDeDesenvolvedores from "../../../../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png"
+import HabitosDeDesenvolvedores from "../../../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png"
 import Image from "next/image"
-import { RatingStarts } from "../../../../components/ratingStars";
+import { RatingStarts } from "@/pages/components/ratingStars";
+
 
 export function YourReading() {
 
@@ -20,7 +21,7 @@ export function YourReading() {
                 <p>Há 2 dias</p>
 
                 <AssessmentContent>
-                  <RatingStarts />
+                  <RatingStarts size="1rem"/>
                 </AssessmentContent>
               </header>
 

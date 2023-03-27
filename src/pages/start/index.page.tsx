@@ -1,10 +1,12 @@
 import { ContainerHome, ContentStart } from "./styles";
 import { useState } from "react";
-import { SideBar } from "../../components/sideBar";
 import { Content } from "./components/content";
-import { FavoriteBooks } from "../../components/favoviteBooks";
+import { SideBar } from "../components/sideBar";
+import { FavoriteBooks } from "../components/favoviteBooks";
+import { useRouter } from 'next/router'
 
 export default function Start() {
+  
   return (
     <ContainerHome>
       <ContentStart>

@@ -1,4 +1,4 @@
-import { styled } from "../../../styles/stitches.config";
+import { styled } from "../../styles/stitches.config";
 import ElipseTop from "../../../../assets/elipseTop.svg";
 import { after } from "node:test";
 

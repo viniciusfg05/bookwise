@@ -36,7 +36,6 @@ export default function Home() {
   
   return (
     <ContainerHome>
-      {/* <p>{JSON.stringify(session.data)}</p> */}
       <ContentHome>
         <ContentBg>
           <ContentImage>

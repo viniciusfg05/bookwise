@@ -4,44 +4,57 @@ import { ConteinerSideBar, ContentSidebar, LiContent } from "./styles";
 import Logo from "../../../../assets/books/logo.svg";
 import Image from "next/image"
 import Link from "next/link"
-import { Binoculars, ChartLineUp } from "@phosphor-icons/react";
+import { Binoculars, ChartLineUp, User } from "@phosphor-icons/react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export function SideBar() {
+  const [ whichRouteToBe, setWhichRouteToBe] = useState();
+  const [ activeUrl, SetActiveUrl] = useState({
+    "@bp2": "mobile"
+  });
+  const { route } = useRouter()
+  console.log(route)
+
+  useEffect(() => {
+
+  }, [])
+
   return (
     <ConteinerSideBar>
-    <BackgroundSidebar />
+      <BackgroundSidebar />
 
-    <ContentSidebar>
+      <ContentSidebar>
 
-      <Image src={Logo} alt=""/>
+        <Image src={Logo} alt="" />
 
-      <ul>
-        <LiContent activeUrl={{ "@bp2": "mobile", "@bp3": "desktop" }}>
-          <Link href={""}>
-            <ChartLineUp size={24} />
-            Início
-          </Link>
-        </LiContent>
+        <ul>
+          <LiContent activeUrl={route === "/start" && "true"}>
+            <Link href={"/start"}>
+              <ChartLineUp size={24} />
+              Início
+            </Link>
+          </LiContent>
 
-        <LiContent>
-          <Link href={""}>
-            <Binoculars size={24} />
-            Explorar
-          </Link>
+          <LiContent activeUrl={route === "/explorer" && "true"}>
+            <Link href={"/explorer"}>
+              <Binoculars size={24} />
+              Explorar
+            </Link>
 
-        </LiContent>
+          </LiContent>
 
-        <LiContent>
-          <Link href={""}>
-            <Binoculars size={24} />
-            Explorar
-          </Link>
+          <LiContent activeUrl={route === "/profile" && "true"}>
+            <Link href={"/profile"}>
+              <User size={24} />
+              Profile
+            </Link>
 
-        </LiContent>
-      </ul>
+          </LiContent>
+        </ul>
 
-      <SignOutLogin />
-    </ContentSidebar>
-  </ConteinerSideBar>
+        <SignOutLogin />
+      </ContentSidebar>
+    </ConteinerSideBar>
   )
 }

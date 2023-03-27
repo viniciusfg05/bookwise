@@ -2,9 +2,9 @@ import { AssessmentBook, AssessmentContent, MainContainer, MainContent, MyBooksC
 import { Star, StarHalf } from "@phosphor-icons/react";
 import { AvatarProfile } from "@/pages/components/avatar";
 import { useState } from "react";
-import HabitosDeDesenvolvedores from "../../../../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png"
+import HabitosDeDesenvolvedores from "../../../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png"
 import Image from "next/image"
-import { RatingStarts } from "../../../../components/ratingStars";
+import { RatingStarts } from "@/pages/components/ratingStars";
 
 export function Assessment() {
 
@@ -25,7 +25,7 @@ export function Assessment() {
             </ProfileContent>
 
             <AssessmentContent>
-              <RatingStarts />
+              <RatingStarts size="1rem"/>
             </AssessmentContent>
           </header>
 
@@ -60,7 +60,7 @@ export function Assessment() {
             </ProfileContent>
 
             <AssessmentContent>
-              <RatingStarts />
+              <RatingStarts size="1rem"/>
 
             </AssessmentContent>
           </header>
@@ -96,7 +96,7 @@ export function Assessment() {
             </ProfileContent>
 
             <AssessmentContent>
-              <RatingStarts />
+              <RatingStarts size="1rem"/>
 
             </AssessmentContent>
           </header>

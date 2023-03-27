@@ -1,4 +1,5 @@
 import { styled } from "../../../../styles/stitches.config";
+
 export const AssessmentsTheUsersContainer = styled("div", {
   display: "flex",
   width: "100%",

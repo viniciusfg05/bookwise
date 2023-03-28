@@ -15,7 +15,7 @@ export default function Profile() {
   return (
     <ContainerProfile>
       <ContentProfile>
-        <SideBar />
+        {/* <SideBar /> */}
 
         <ProfileConteiner>
           {/* <header>

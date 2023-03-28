@@ -11,7 +11,6 @@ export default function Start() {
     <ContainerHome>
       <ContentStart>
 
-        <SideBar />
 
         <Content />
 

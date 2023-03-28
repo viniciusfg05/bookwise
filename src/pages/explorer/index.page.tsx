@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <ContainerExplorer>
       <ContentExplorer>
-        <SideBar />
+        {/* <SideBar /> */}
         <ExplorerConteiner>
           <header>
             <Binoculars size={32} color="#50B2C0" />

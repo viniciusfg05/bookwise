@@ -134,3 +134,19 @@ export const ButtonStyles = styled("button", {
     width: "100%",
   },
 });
+
+export const AppConteiner = styled("div", {
+  maxWidth: "90rem",
+  height: "100vh",
+  margin: "0 auto",
+  color: "white",
+})
+
+export const AppContent = styled("div", {
+  display: "flex",
+
+  "@media (max-width: 768px)": {
+    flexDirection: "column",
+  },
+})
+

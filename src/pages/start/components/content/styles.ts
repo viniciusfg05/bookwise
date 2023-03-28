@@ -51,6 +51,7 @@ export const AssessmentManis = styled("div", {
   "@media(max-width: 768px)": {
     paddingLeft: "0.5rem",
     marginBottom: "2.5rem",
+    width: "100vw",
 
     "> header": {
       marginTop: "1rem",

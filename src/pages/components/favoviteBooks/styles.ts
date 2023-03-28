@@ -22,6 +22,7 @@ export const ConteinerFavoviteBooks = styled("div", {
     marginTop: "2rem",
     marginLeft: "0",
     paddingLeft: "0.5rem",
+    width: "100vw",
 
     "> header": {
       width: "calc(100% - 2rem)",

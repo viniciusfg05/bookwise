@@ -15,9 +15,10 @@ export const ContainerHome = styled("div", {
 
 export const ContentStart = styled("div", {
   display: "grid",
-  gridTemplateColumns: "22.78% 47.22% 25.3472%",
+  gridTemplateColumns: "38rem 20.25rem",
   height: "100%",
   width: "100%",
+  gap: "4rem",
 
   "@media (max-width: 768px)": {
     all: "unset"

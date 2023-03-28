@@ -1,32 +1,15 @@
 import { Binoculars } from "@phosphor-icons/react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { SideBar } from "../components/sideBar";
 import {
   BooksContainer,
-  BooksContent,
-  BooksMainConteiner,
-  ButtonContent,
   ContainerExplorer,
   ContentExplorer,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
   ExplorerConteiner,
   LiContent,
 } from "./styles";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { FavoriteBooks } from "../components/favoviteBooks";
-import HabitosDeDesenvolvedores from "../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png";
-import { AssessmentContent } from "../components/favoviteBooks/styles";
-import { ContainerHome } from "../styles";
-import { ContentStart } from "../start/visitor/styles";
-import { RatingStarts } from "../components/ratingStars";
-import * as Dialog from '@radix-ui/react-dialog';
+import { useState } from "react";
 import { Books } from "./components/books";
-import { Modal } from "./components/modal";
 
 
 export default function Home() {

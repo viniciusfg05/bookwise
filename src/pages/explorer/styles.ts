@@ -12,13 +12,12 @@ export const ContainerExplorer = styled("div", {
 })
 
 export const ContentExplorer = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "22.78% 1fr",
+  display: "flex",
   height: "100%",
   width: "100%",
 
   "@media (max-width: 768px)": {
-    all: "unset"
+    all: "unset",
   }
 })
 
@@ -77,6 +76,7 @@ export const ExplorerConteiner = styled("div", {
 
   "@media (max-width: 768px)": {
     paddingLeft: "0.5rem",
+    width: "100vw",
     
     "> header": {
       marginTop: "1.5rem",

@@ -13,9 +13,10 @@ export const ContainerProfile = styled("div", {
 
 export const ContentProfile = styled("div", {
   display: "grid",
-  gridTemplateColumns: "24.16% 43.33%  32.5%",
+  gridTemplateColumns: "39rem 19.25rem",
   height: "100%",
   width: "100%",
+  gap: "4rem",
 
   "@media (max-width: 768px)": {
     all: "unset",
@@ -40,6 +41,7 @@ export const ProfileConteiner = styled("div", {
 
   "@media(max-width: 768px)": {
     marginTop: "2rem",
+    width: "100vw",
 
 
     header: {

@@ -2,9 +2,17 @@ import { useRouter } from "next/router"
 import {styled} from "../../../styles/stitches.config"
 export const ConteinerSideBar = styled("div", {
   padding: "1rem",
-
+  
   "@media (max-width: 768px)": {
     padding: "0.5rem",
+  },
+  
+  variants: {
+    ifNotLoggedInHide: {
+      true: {
+        display: "none",
+      }
+    }
   }
 })
 

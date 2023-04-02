@@ -10,7 +10,7 @@ export function AvatarProfile({ image, hideProfile}: AvatarProps) {
     // @ts-ignore
     <AvataRoot mobile={{ '@bp2': `${hideProfile}` }}>
       <AvataImage src={image} />
-      <AvataFallback />
+      <AvataFallback></AvataFallback>
     </AvataRoot>
   )
 }

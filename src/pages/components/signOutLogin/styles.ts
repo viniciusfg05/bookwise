@@ -12,6 +12,11 @@ export const ContentFooter = styled("div", {
   margin: "0 auto",
   gap: "1rem",
 
+  button: {
+    all: "unset",
+    cursor: "pointer",
+  },
+
   "> a": {
     display: "flex",
     alignItems: "center",

@@ -1,6 +1,6 @@
 import { Star, StarHalf } from "@phosphor-icons/react";
 import { useState } from "react";
-import { RatingStartsContainer } from "./styles";
+import { Button, RatingStartsContainer } from "./styles";
 
 interface RatingStartsProps {
   size: string;
@@ -14,6 +14,7 @@ export function RatingStarts({ size }: RatingStartsProps) {
     setSelectedStarts(value)
   }
 
+
   const starts = Array.from({ length: 5 }).map(
     (_, i) => {
       return i;
@@ -23,14 +24,14 @@ export function RatingStarts({ size }: RatingStartsProps) {
   return (
     <RatingStartsContainer>
       {starts.map(start => (
-        <button  value="1" onClick={(event) => handleStartSelect(start + 1)} type="button" >
+        <Button  value="1"  type="button" disabled >
           {
             totalStartsPoints < start && <Star size={size} /> ||
             totalStartsPoints == start && <Star size={size} /> ||
             totalStartsPoints <= start + 0.5 && <StarHalf weight="fill" size={size} /> ||
             totalStartsPoints >= start + 0.6 && <Star weight="fill" size={size} />
           }
-        </button>
+        </Button>
       ))}
     </RatingStartsContainer>
   )

@@ -22,6 +22,8 @@ import {
   ImageLogo,
 } from "./styles";
 import { signIn, useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { api } from "@/lib/axios";
 
 export default function Home() {
   const session = useSession();
@@ -33,6 +35,7 @@ export default function Home() {
   async function handleConnectGitHub() {
     await signIn("gitHub");
   }
+
   
   return (
     <ContainerHome>

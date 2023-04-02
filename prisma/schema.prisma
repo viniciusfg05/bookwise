@@ -25,13 +25,14 @@ model Book {
   id          String   @id @default(uuid())
   name        String
   author      String
-  summary     String
+  summary     String   @db.Text
   cover_url   String
   total_pages Int
   created_at  DateTime @default(now())
 
-  categories CategoriesOnBooks[]
+  // categories CategoriesOnBooks[]
   ratings    Rating[]
+  categories Category[]
 
   @@map("books")
 }
@@ -40,20 +41,18 @@ model Category {
   id   String @id @default(uuid())
   name String @unique
 
-  books CategoriesOnBooks[]
+  books Book[]
+  // CategoriesOnBooks CategoriesOnBooks[]
 
   @@map("categories")
 }
 
-model CategoriesOnBooks {
-  book_id    String
-  categoryId String
+// model CategoriesOnBooks {
+//   id         String @id @default(uuid())
+//   categoryId String
 
-  book     Book     @relation(fields: [book_id], references: [id])
-  category Category @relation(fields: [categoryId], references: [id])
-
-  @@id([book_id, categoryId])
-}
+//   category Category @relation(fields: [categoryId], references: [id])
+// }
 
 model Rating {
   id          String   @id @default(uuid())

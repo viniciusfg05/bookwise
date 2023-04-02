@@ -108,8 +108,6 @@ export const AssessmentContent = styled("div", {
   button: {
     all: "unset",
     cursor: "pointer",
-    // width: "1rem",
-    // height: "1rem",
     lineHeight: 0,
 
     svg: {

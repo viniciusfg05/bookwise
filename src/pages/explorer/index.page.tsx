@@ -3,117 +3,98 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import {
   BooksContainer,
+  BooksContent,
+  BooksMainConteiner,
   ContainerExplorer,
   ContentExplorer,
+  DialogTrigger,
   ExplorerConteiner,
   LiContent,
 } from "./styles";
-import { useState } from "react";
-import { Books } from "./components/books";
+import { GetServerSideProps, GetStaticProps } from "next";
+import { prisma } from "@/lib/prisma";
+import { AssessmentContent } from "../components/favoviteBooks/styles";
+import { RatingStarts } from "../components/ratingStars";
+import { Modal } from "./components/modal";
+import * as Dialog from "@radix-ui/react-dialog"
+import Image from "next/image"
 
+interface ExplorerProps {
+  title: string,
+  image: string,
+  author: string,
+  summary: string,
+  totalPages: number,
+  id: string
+}
 
-export default function Home() {
+interface CategoriesProps {
+  id: string;
+  name: string;
+}
+
+interface ExplorerTypes {
+  allBooks: ExplorerProps[]
+  allCategorie: CategoriesProps[]
+}
+
+import { Nunito } from "next/font/google";
+import { Navbar } from "./components/navbar";
+import { useEffect, useState } from "react";
+import { InputBar } from "../components/inputBar";
+import { useRouter } from "next/router";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+});
+
+export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
   const session = useSession();
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
 
-  console.log(isDragging);
+  const router = useRouter()
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    setStartX(e.pageX - e.currentTarget.offsetLeft);
-    setScrollLeft(e.currentTarget.scrollLeft);
-  };
+  const {yourEvaluation} = router.query
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - e.currentTarget.offsetLeft;
-    const distance = (x - startX) * 1.5; // Ajuste a sensibilidade do movimento aqui
-    e.currentTarget.scrollLeft = scrollLeft - distance;
-  };
-
-  const handleMouseUp = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    setStartX(0);
-  };
 
   return (
     <ContainerExplorer>
       <ContentExplorer>
-        {/* <SideBar /> */}
         <ExplorerConteiner>
           <header>
             <Binoculars size={32} color="#50B2C0" />
             <h2>Explorar</h2>
+            <InputBar pageExplorer="pageExplorer" placeholder="Buscar livro ou autor" />
           </header>
-          <nav>
-            <ul
-              //@ts-ignore
-              onMouseDownCapture={handleMouseDown}
-              //@ts-ignore
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-            // onMouseDownCapture={() => console.log("out")}
-            >
-              <LiContent variantsStyle>
-                <Link href={""}>Todo</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-
-              <LiContent variantsStyle="false">
-                <Link href={""}>Computação</Link>
-              </LiContent>
-            </ul>
-          </nav>
+          <Navbar allCategorie={allCategorie}/>
 
           <BooksContainer>
             <section>
+              {allBooks.map((book) => (
+                <Dialog.Root key={book.id}>
+                  <DialogTrigger asChild>
 
-              <Books typeFor="page"/>
-              
-              <Books typeFor="page"/>
+                    <BooksContent typeFor={"page"} className={`${nunito.className}`}>
+                      <Image
+                        src={book.image}
+                        width={108}
+                        height={152}
+                        alt=""
+                      />
+                      <BooksMainConteiner typeFor={"page"}>
+                        <header>
+                          <p>{book.title.slice(0, 50) + (book.title.length > 50 ? "..." : "")}</p>
+                          <span>{book.author}</span>
+                        </header>
+                        <AssessmentContent>
+                          <RatingStarts size="1rem" />
+                        </AssessmentContent>
+                      </BooksMainConteiner>
+                    </BooksContent>
+                  </DialogTrigger>
+                  <Modal book={{ image: book.image, author: book.author, totalPages: book.totalPages, title: book.title, id: book.id }} yourEvaluation={yourEvaluation!} />
+                </Dialog.Root>
+              ))}
+
             </section>
           </BooksContainer>
         </ExplorerConteiner>
@@ -122,160 +103,107 @@ export default function Home() {
     </ContainerExplorer>
   );
 
-  // return (
-  //   <ContainerExplorer>
-  //     <ContentExplorer>
-  //       <SideBar />
+}
 
-  //       <ExplorerConteiner>
-  //         <header>
-  //           <Binoculars size={32} color="#50B2C0" />
-  //           <h2>Explorar</h2>
-  //         </header>
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { categorie, search } = query
 
-  //          <nav>
-  //           <ul
-  //             //@ts-ignore
-  //             onMouseDownCapture={handleMouseDown}
-  //             //@ts-ignore
-  //             onMouseMove={handleMouseMove}
-  //             onMouseUp={handleMouseUp}
-  //             // onMouseDownCapture={() => console.log("out")}
-  //           >
-  //             <LiContent variantsStyle>
-  //               <Link href={""}>
-  //                 Todo
-  //               </Link>
+    if(search === undefined) {
 
-  //             </LiContent>
+      if(categorie == undefined) {
+        const allBooks = await prisma.book.findMany({})
+    
+        const allBooksRes = allBooks.map((books) => {
+          return {
+            title: books.name,
+            image: books.cover_url,
+            author: books.author,
+            summary: books.summary,
+            totalPages: books.total_pages,
+            id: books.id
+          }
+        })
+    
+        const allCategorie = await prisma.category.findMany({})
+    
+        return {
+          props: {
+            allBooks: allBooksRes,
+            allCategorie: allCategorie
+          },
+        }
+      } else {
+    
+        const allBooks = await prisma.book.findMany({
+          where: {
+            categories: {
+              every: {
+                name: {
+                  contains: String(categorie)
+                }
+              }
+            }
+          }
+        })
+    
+        const allBooksRes = allBooks.map((books) => {
+          return {
+            title: books.name,
+            image: books.cover_url,
+            author: books.author,
+            summary: books.summary,
+            totalPages: books.total_pages,
+            id: books.id
+          }
+        })
+    
+        const allCategorie = await prisma.category.findMany({})
+    
+    
+        return {
+          props: {
+            allBooks: allBooksRes,
+            allCategorie: allCategorie
+          },
+        }
+      }
+    } else {
+      const searchBasedOnInput = await prisma.book.findMany({
+        where: {
+          OR: [
+            {
+              name: {
+                contains: String(search),
+              }
+            },
+            {
+              author: {
+                contains: String(search),
+              }
+            }
+          ]
+        }
+      })
+    
+      const getSearchBasedOnInput = searchBasedOnInput.map((books) => {
+        return {
+          title: books.name,
+          image: books.cover_url,
+          author: books.author,
+          summary: books.summary,
+          totalPages: books.total_pages,
+          id: books.id
+        }
+      })
+      const allCategorie = await prisma.category.findMany({})
+    
+      return {
+        props: {
+          allBooks: getSearchBasedOnInput,
+          allCategorie: allCategorie
+        },
+      }
+    }
 
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
 
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //             <LiContent variantsStyle="false">
-  //               <Link href={""}>
-  //                 Computação
-  //               </Link>
-  //             </LiContent>
-
-  //           </ul>
-  //         </nav>
-
-  //           <BooksContainer>
-  //             <section>
-  //               <BooksContent>
-  //                 <Image src={HabitosDeDesenvolvedores} width={108} height={152} alt="" />
-  //                 <BooksMainConteiner>
-  //                   <header>
-  //                     <p>14 Hábitos de Desenvolvedores Alta...</p>
-  //                     <span>Zeno Rocha</span>
-  //                   </header>
-  //                   <AssessmentContent>
-  //                     <RatingStarts size="1rem" />
-  //                   </AssessmentContent>
-  //                 </BooksMainConteiner>
-  //               </BooksContent>
-
-  //               <BooksContent>
-  //                 <Image src={HabitosDeDesenvolvedores} width={108} height={152} alt="" />
-  //                 <BooksMainConteiner>
-  //                   <header>
-  //                     <p>14 Hábitos de Desenvolvedores Alta...</p>
-  //                     <span>Zeno Rocha</span>
-  //                   </header>
-  //                   <AssessmentContent>
-  //                     <RatingStarts size="1rem" />
-  //                   </AssessmentContent>
-  //                 </BooksMainConteiner>
-  //               </BooksContent>
-
-  //               <BooksContent>
-  //                 <Image src={HabitosDeDesenvolvedores} width={108} height={152} alt="" />
-  //                 <BooksMainConteiner>
-  //                   <header>
-  //                     <p>14 Hábitos de Desenvolvedores Alta...</p>
-  //                     <span>Zeno Rocha</span>
-  //                   </header>
-  //                   <AssessmentContent>
-  //                     <RatingStarts size="1rem" />
-  //                   </AssessmentContent>
-  //                 </BooksMainConteiner>
-  //               </BooksContent>
-
-  //               <BooksContent>
-  //                 <Image src={HabitosDeDesenvolvedores} width={108} height={152} alt="" />
-  //                 <BooksMainConteiner>
-  //                   <header>
-  //                     <p>14 Hábitos de Desenvolvedores Alta...</p>
-  //                     <span>Zeno Rocha</span>
-  //                   </header>
-  //                   <AssessmentContent>
-  //                     <RatingStarts size="1rem" />
-  //                   </AssessmentContent>
-  //                 </BooksMainConteiner>
-  //               </BooksContent>
-  //             </section>
-  //           </BooksContainer>
-
-  //       </ExplorerConteiner>
-  //     </ContentExplorer>
-  //   </ContainerExplorer>
-  // );
 }

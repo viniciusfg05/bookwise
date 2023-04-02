@@ -7,21 +7,18 @@ import Link from "next/link"
 import { Binoculars, ChartLineUp, User } from "@phosphor-icons/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
-export function SideBar() {
-  const [ whichRouteToBe, setWhichRouteToBe] = useState();
-  const [ activeUrl, SetActiveUrl] = useState({
-    "@bp2": "mobile"
-  });
+interface AppProps {
+  hiden: boolean;
+}
+
+export function SideBar({hiden}: AppProps) {
+  const session = useSession();
+
   const { route } = useRouter()
-  console.log(route)
-
-  useEffect(() => {
-
-  }, [])
-
   return (
-    <ConteinerSideBar>
+    <ConteinerSideBar ifNotLoggedInHide={hiden === true ? "true" : undefined}>
       <BackgroundSidebar />
 
       <ContentSidebar>

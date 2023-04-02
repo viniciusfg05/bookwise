@@ -107,6 +107,16 @@ export const AssessmentsContent = styled("div", {
 
   header: {
     marginBottom: "1.375rem",
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+
+    button: {
+      all: "unset",
+      background: "transparent",
+      color: "$purple100",
+      fontSize: "1",
+    },
 
     p: {
       color: "$gray200",
@@ -148,15 +158,21 @@ export const Assessments = styled("div", {
 
 export const Profile = styled("div", {
   display: "flex",
+  alignItems: "center",
+  gap: "1rem",
+  
+  "> strong": {
+    color: "$gray100",
+  },
+
 
   cite: {
     display: "flex",
     flexDirection: "column",
     fontStyle: "normal",
-    marginLeft: "1rem",
 
     strong: {
-      color: "$white"
+      color: "$gray100"
     },
 
     time: {

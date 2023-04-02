@@ -923,7 +923,7 @@ useCallback: memorizar uma função -Quando criamos uma fução que vai se passa
 
 ```tsx
 const addToWishList = useCallback(async (id: number) => {
-    console.log(id)
+    // console.log(id)
 }, [])
 ```
 
@@ -988,7 +988,6 @@ function List() {
 
   ~~~ts
     function videoPlay(event: MouseEvent<HTMLVideoElement>) {
-    console.log("hover")
     event.currentTarget.play();
   }
 

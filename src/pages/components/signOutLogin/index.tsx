@@ -1,19 +1,22 @@
-import { SignOut } from "@phosphor-icons/react";
+import { SignIn, SignOut } from "@phosphor-icons/react";
 import { ConteinerFooter, ContentFooter, ContentPerfil, Perfil } from "./styles";
 import Link from "next/link"
 import { useState } from "react";
 import { AvatarProfile } from "../avatar";
+import { signOut, useSession,  } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export function SignOutLogin() {
-  const [ login, setLogin ] = useState(true)
-
-  if (!login) {
+  const session = useSession();
+  const router = useRouter();
+    // console.log(session)
+  if (session.status !== "authenticated") {
     return (
     <ConteinerFooter>
       <ContentFooter mobile={{ '@bp2': 'true' }}>
-        <p>Fazer Login</p>
+        <button onClick={() => router.push("/")}>Fazer Login</button>
           <Link href={""}>
-            <SignOut size={24} color="#F75A68" />
+            <SignIn size={24} color="#50B2C0" />
           </Link>
       </ContentFooter>
     </ConteinerFooter>
@@ -25,14 +28,14 @@ export function SignOutLogin() {
       <ContentFooter mobile={{ '@bp2': 'true' }}>
           <Perfil>
             <ContentPerfil>
-              <AvatarProfile image="https://avatars.githubusercontent.com/u/68232658?v=4" hideProfile="true"/>
+              <AvatarProfile image={session.data.user.avatar_url} hideProfile="true"/>
             </ContentPerfil>
           </Perfil>
           
-          <p>Vinicius</p>
+          <p>{session.data.user.name}</p>
 
           <Link href={""} title="Sair">
-            <SignOut size={24} color="#F75A68"/>
+            <SignOut size={24} color="#F75A68" onClick={() => signOut()}/>
           </Link>
       </ContentFooter>
     </ConteinerFooter>

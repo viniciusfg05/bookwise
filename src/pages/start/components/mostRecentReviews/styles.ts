@@ -80,9 +80,6 @@ export const AssessmentContent = styled("div", {
   button: {
     all: "unset",
     cursor: "pointer",
-    // backgroundColor: "red",
-    width: "1.5rem",
-    height: "1.5rem",
 
     svg: {
       color: "$purple100",
@@ -106,9 +103,25 @@ export const AssessmentBook = styled("div", {
   cite: {
     all: "unset",
     lineHeight: "1.5rem",
+    fontStyle: "normal",
     display: "flex",
     flexDirection: "column",
     marginBottom: "1rem",
+
+    strong: {
+      fontWeight: "700",
+      fontSize: "1rem",
+    },
+
+    span: {
+      color: "$gray400",
+      fontSize: "0.875rem",
+    }
+  },
+
+  p: {
+    fontSize: "0.875rem",
+    color: "$gray300"
   }
 })
 

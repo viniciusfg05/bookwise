@@ -3,13 +3,12 @@ import { SideBar } from "../components/sideBar";
 import {
   ContainerProfile,
   ContentProfile,
-  Input,
-  InputConteiner,
   ProfileConteiner
 } from "./styles";
 import Link from "next/link"
 import { AssessnentsUsers } from "./components/assessnentsUsers";
 import { UserProfile } from "./components/userProfile";
+import { InputBar } from "../components/inputBar";
 
 export default function Profile() {
   return (
@@ -28,10 +27,7 @@ export default function Profile() {
             <p>voltar</p>
           </Link>
 
-          <InputConteiner>
-            <Input placeholder="Buscar livro avaliado" />
-            <MagnifyingGlass />
-          </InputConteiner>
+          <InputBar pageProfile="pageProfile" placeholder="Buscar livro avaliado"/>
 
           <AssessnentsUsers />
         </ProfileConteiner>

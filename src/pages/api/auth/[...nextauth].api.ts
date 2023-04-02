@@ -53,6 +53,20 @@ export function buildNextAuthOptions(
       }),
         
     ],
+    callbacks: {
+      // async signIn({ user }) {
+      //   if(user) {
+      //     return "/start";
+      //   }
+      //   return true
+      // },
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        };
+      },
+    }
   };
 }
 

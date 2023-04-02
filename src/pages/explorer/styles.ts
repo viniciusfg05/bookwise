@@ -39,7 +39,7 @@ export const ExplorerConteiner = styled("div", {
   
 
   nav: {
-    overflowX: "auto",
+    // overflow: "auto",
     width: "100%",
 
     ul: {
@@ -49,7 +49,7 @@ export const ExplorerConteiner = styled("div", {
       gap: "1rem",
       // maxWidth: "9000px",
       width: `calc((100%) * ${1})`,
-      overflowX: "auto",
+      overflow: "auto",
       padding: "0.2rem",
 
       "&::-webkit-scrollbar": {
@@ -157,49 +157,111 @@ export const BooksContainer = styled("div", {
 })
 
 export const BooksContent = styled("div", {
-  borderRadius: "$md",
-  display: "flex",
-  gap: "1rem",
-  height: "100%",
-  alignItems: "flex-start",
-  padding: "1rem",
-  background: "$gray700",
-  marginBottom: "1rem",
-  width: "calc((100% - 3rem)",  
+  border: "2px solid $gray700",
+  
+  variants: {
+    typeFor: {
+      page: {
+        cursor: "pointer",
+        borderRadius: "$md",
+        display: "flex",
+        gap: "1rem",
+        alignItems: "flex-start",
+        padding: "1rem",
+        background: "$gray700",
+        marginBottom: "1rem",
+        width: "calc((100% - 3rem)",
+        transition: "0.3s",
 
 
-  img: {
-    height: "100%",
-    // width: "30%",
+        "&:hover": {
+          border: "2px solid $gray600",
+                
+        },
+
+
+        img: {
+          height: "9.5rem",
+          // width: "30%",
+        },
+
+        "@media(max-width: 768px)": {
+          gap: "0.5rem",
+          marginBottom: "0",
+        },
+      },
+      modal: {
+        borderRadius: "$md",
+        display: "flex",
+        gap: "2rem",
+        height: "100%",
+        alignItems: "flex-start",
+        // padding: "1rem",
+        background: "$gray700",
+        marginBottom: "2.5rem",
+        width: "calc((100% - 3rem)",
+
+        img: {
+          height: "15.125rem",
+          width: "10.7rem",
+        },
+
+        "@media(max-width: 768px)": {
+          gap: "0.5rem",
+          marginBottom: "0",
+        },
+      },
+    },
   },
-
-  "@media(max-width: 768px)": {
-    gap: "0.5rem",
-    marginBottom: "0",
-
-  }
 })
 
 export const BooksMainConteiner = styled("div", {
-  display: "flex",
-  height: "100%",
-  width: "70%",
-  justifyContent: "space-between",
-  flexDirection: "column",
-  
-  p: {
-    fontSize: "1rem",
-    color: "$gray100"
-  },
-  span: {
-    fontSize: "0.875rem",
-    color: "$gray400"
-  },
+  variants: {
+    typeFor: {
+      page: {
+        display: "flex",
+        height: "100%",
+        width: "70%",
+        justifyContent: "space-between",
+        flexDirection: "column",
 
-  "@media(max-width: 768px)": {
+        strong: {
+          fontSize: "1rem",
+          color: "$gray100",
+          display: "flex",
+        },
+        span: {
+          fontSize: "0.875rem",
+          color: "$gray400",
+        },
 
-  }
-})
+        "@media(max-width: 768px)": {},
+      },
+      modal: {
+        display: "flex",
+        height: "100%",
+        width: "70%",
+        justifyContent: "space-between",
+        flexDirection: "column",
+
+        strong: {
+          display: "flex",
+          fontSize: "1.125rem",
+          fontWeight: "700",
+          marginBottom: "0.5rem",
+          // fontFamily: "nunito",
+          color: "$gray100",
+        },
+        span: {
+          fontSize: "1rem",
+          color: "$gray400",
+        },
+
+        "@media(max-width: 768px)": {},
+      },
+    },
+  },
+});
 
 
 export const DialogTrigger = styled(Dialog.Trigger, {
@@ -216,3 +278,7 @@ export const ButtonContent = styled("button", {
 export const DialogContent = styled(Dialog.Content, {})
 export const DialogTitle = styled(Dialog.Title, {})
 export const DialogDescription = styled(Dialog.Description, {})
+
+
+
+

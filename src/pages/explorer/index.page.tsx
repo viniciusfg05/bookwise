@@ -87,7 +87,7 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
   function handleSelectBooks(id: string) {
     setSelectBooks(id)
   }
-
+  console.log(dataExplorer)
   return (
     <ContainerExplorer>
       <ContentExplorer>
@@ -99,10 +99,17 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
             </section>
             <InputBar pageExplorer="pageExplorer" placeholder="Buscar livro ou autor" />
           </header>
-          <Navbar allCategorie={allCategorie!} />
+          {allCategorie ? (
+
+            <Navbar allCategorie={allCategorie!} />
+          ): (
+            <p>sem dados</p>
+          )}
 
           <BooksContainer>
-            <section>
+            { dataExplorer ? (
+              <section>
+
               {dataExplorer.map((book) => (
                 <Dialog.Root key={book.id}>
                   <DialogTrigger asChild>
@@ -130,7 +137,11 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
                 </Dialog.Root>
               ))}
 
-            </section>
+              </section>
+
+            ) : (
+              <h1>Sem dados</h1>
+            )}
           </BooksContainer>
         </ExplorerConteiner>
 
@@ -138,11 +149,11 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
     </ContainerExplorer>
   );
 
+
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { categorie, search } = query
-  console.log(search)
 
   async function FindBooksBasedOnSearches() {
     const searchBasedOnInput = await prisma.book.findMany({

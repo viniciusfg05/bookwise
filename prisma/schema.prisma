@@ -71,6 +71,8 @@ model Rating {
   user    User   @relation(fields: [user_id], references: [id])
   user_id String
 
+  @@index([user_id])
+  @@index([book_id])
   @@map("ratings")
 }
 
@@ -90,6 +92,7 @@ model Account {
   user                User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([provider, provider_account_id])
+  @@index([user_id])
   @@map("accounts")
 }
 
@@ -100,5 +103,6 @@ model Session {
   expires       DateTime
   user          User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
+  @@index([user_id])
   @@map("sessions")
 }

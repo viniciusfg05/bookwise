@@ -1,14 +1,10 @@
 import { styled } from "../../../../styles/stitches.config";
 
 export const MyBooksContainer = styled("div", {
-  
-  "@media(max-width: 768px)": {
-    overflow: "auto",
-    width: "100%",
-  }
-})
+  "@media(max-width: 768px)": {},
+});
 
-const contentCount = 3
+const contentCount = 3;
 
 export const MyBooksContent = styled("div", {
   marginBottom: "0.75rem",
@@ -24,81 +20,78 @@ export const MyBooksContent = styled("div", {
 
   section: {
     height: "100%",
+    background: "$gray600",
   },
 
   // Margin exceto na primeira
   "section:not(:first-of-type)": {
     marginTop: "1rem",
   },
-  
+
   "@media(max-width: 768px)": {
-      display: "flex",
-      // maxWidth: "9000px",
-      width: `calc((100%) * ${contentCount})`,
-      overflow: "auto",
+    display: "flex",
 
+    section: {
+      // display: "flex",
+      width: "calc(100vw - 1rem)",
+      height: "100%",
 
-      section: {
-        // display: "flex",
-        width: "calc(100vw - 2rem)",
-        height: "100%",
-
-        header: {
-          flexDirection: "column",
-          height: "4rem",
-        }
+      header: {
+        marginBottom: "0.5rem",
+        flexDirection: "row",
+        alignItems: "center",
+        height: "4rem",
       },
+    },
 
-      "section:not(:first-of-type)": {
-        marginTop: "0rem",
-        marginLeft: "1rem",
-      },
-    }
-})
+    "section:not(:first-of-type)": {
+      marginTop: "0rem",
+      marginLeft: "1rem",
+    },
+  },
+});
 
 export const MainContainer = styled("div", {
   width: "100%",
   height: "100%",
-})
-
+});
 
 export const MainContent = styled("div", {
   display: "flex",
-  gap: "0.5rem",
+  gap: "1.5rem",
   width: "100%",
   height: "100%",
+
+  img: {
+    height: "100%",
+  },
 
   "@media(max-width: 768px)": {
     flexDirection: "column",
     alignItems: "center",
-  }
-})
+  },
+});
 
 export const AssessmentContent = styled("div", {
-
-
   button: {
     all: "unset",
-    cursor: "pointer",
-    // backgroundColor: "red",
-    width: "1.5rem",
-    height: "1.5rem",
 
     svg: {
       color: "$purple100",
-    }
+    },
   },
 
   "@media(max-width: 768px)": {
     marginleft: "auto",
     display: "flex",
+    width: "6rem",
     justifyContent: "center",
-    width: "inherit",
     height: "100%",
-  }
-})
+  },
+});
 
 export const YourReadingsMain = styled("div", {
+  width: "100%",
 
   "> header": {
     marginBottom: "1rem",
@@ -106,12 +99,14 @@ export const YourReadingsMain = styled("div", {
     p: {
       fontSize: "0.875rem",
       color: "$gray300",
-    }
+    },
   },
 
   "> cite": {
-      
+    fontStyle: "normal",
     lineHeight: "1.5rem",
+
+    strong: {},
 
     span: {
       fontSize: "0.875rem",
@@ -119,12 +114,12 @@ export const YourReadingsMain = styled("div", {
       display: "flex",
       flexDirection: "column",
       marginBottom: "1.5rem",
-      
-      
-    }
+    },
   },
 
   "> p": {
     lineHeight: "1.5rem",
-  }
-})
+    color: "$gray300",
+    fontSize: "0.875rem",
+  },
+});

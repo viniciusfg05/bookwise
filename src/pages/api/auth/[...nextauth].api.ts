@@ -1,13 +1,13 @@
 import { prisma } from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse, NextPageContext } from "next";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import GithubProvider, { GithubProfile } from "next-auth/providers/github";
 import { PrismaAdapter } from "../../../lib/auth/prismaAdapter"
 
 export function buildNextAuthOptions(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req: NextApiRequest | NextPageContext["req"],
+  res: NextApiResponse | NextPageContext["res"]
 ): NextAuthOptions {
   return {
     adapter: PrismaAdapter(),
@@ -25,7 +25,7 @@ export function buildNextAuthOptions(
             id: profile.id,
             name: profile.name!,
             avatar_url: profile.avatar_url,
-            email: profile.email!
+            email: profile.email!,
           }
         },
       }),
@@ -54,12 +54,6 @@ export function buildNextAuthOptions(
         
     ],
     callbacks: {
-      // async signIn({ user }) {
-      //   if(user) {
-      //     return "/start";
-      //   }
-      //   return true
-      // },
       async session({ session, user }) {
         return {
           ...session,

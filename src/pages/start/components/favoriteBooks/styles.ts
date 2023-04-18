@@ -1,9 +1,11 @@
-import { styled } from "../../../styles/stitches.config";
+import { styled } from "../../../../styles/stitches.config";
 
 export const ConteinerFavoviteBooks = styled("div", {
+    display: "flex",
+  flexDirection: "column",
   // background: "red",
   marginTop: "7.81rem",
-  marginLeft: "4.1875rem",
+  // marginLeft: "4.1875rem",
   width: "100%",
 
   "> header": {
@@ -13,6 +15,8 @@ export const ConteinerFavoviteBooks = styled("div", {
     marginBottom: "1rem",
 
     a: {
+      alignItems: "center",
+      display: "flex",
       color: "$purple100",
       textDecoration: "none",
     },
@@ -20,6 +24,7 @@ export const ConteinerFavoviteBooks = styled("div", {
 
   "@media(max-width: 768px)": {
     marginTop: "2rem",
+    order: "1",
     marginLeft: "0",
     paddingLeft: "0.5rem",
     width: "100vw",
@@ -31,6 +36,8 @@ export const ConteinerFavoviteBooks = styled("div", {
 });
 
 export const FavoritesConteiner = styled("div", {
+  height: "100%",
+
   "@media(max-width: 768px)": {
     overflow: "auto",
     width: "100%",
@@ -39,27 +46,58 @@ export const FavoritesConteiner = styled("div", {
 });
 
 export const FavoritesContent = styled("div", {
+  height: "100%",
+
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+  },
+
   "@media(max-width: 768px)": {
     // maxWidth: "9000px",
-    width: `calc((100% - 1rem)* ${2})`,
+    // width: `calc((100vw - 2rem)* ${150})`,
     overflow: "auto",
+
+    "&::-webkit-scrollbar": {
+      height: "1px",
+      width: "1px",
+    },
+  
+    "&::-webkit-scrollbar-track": {
+      background: "$gray700",
+    },
+  
+    "&::-webkit-scrollbar-thumb": {
+      background: "$gray500",
+      transition: "0.3s",
+  
+    },
+  
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "$gray600",
+    },
+
 
     section: {
       display: "flex",
       gap: "1rem",
       width: "100%",
+      flexDirection: "row",
     },
   },
 });
 
 export const ContentFavoviteBooks = styled("div", {
   display: "flex",
-  height: "12.436875rem",
   justifyContent: "space-between",
   flexDirection: "column",
+  height: "8.125rem",
 
   "@media(max-width: 768px)": {
-    height: "11.436875rem",
+    height: "8.125rem",
+    width: "calc(100vw - 2rem)",
+
   },
 });
 
@@ -71,7 +109,6 @@ export const FavoviteBooksContent = styled("div", {
   alignItems: "flex-start",
   padding: "1rem",
   background: "$gray700",
-  marginBottom: "1rem",
   width: "calc((100% - 3rem)",
 
   img: {
@@ -82,6 +119,7 @@ export const FavoviteBooksContent = styled("div", {
   "@media(max-width: 768px)": {
     gap: "0.5rem",
     marginBottom: "0",
+    width: "calc(100vw - 2rem)",
   },
 });
 
@@ -124,3 +162,18 @@ export const AssessmentContent = styled("div", {
 
   "@media(max-width: 768px)": {},
 });
+
+export const HeaderStart = styled("header", {
+  display: "none",
+
+  "@media(max-width: 768px)": {
+    marginTop: "1rem",
+    width: "100%",
+    display: "flex",
+    paddingLeft: "0.5rem",
+  
+    svg: {
+      marginRight: "0.5rem",
+    }
+  }
+})

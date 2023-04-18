@@ -1,7 +1,6 @@
-import { BookmarkSimple, BookOpen, Check, X } from "@phosphor-icons/react";
+import { BookmarkSimple, BookOpen, Check, X, XCircle } from "@phosphor-icons/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { styled } from "../../../../styles/stitches.config";
-import { Books } from "../books";
 import {
   Assessments,
   AssessmentsContent,
@@ -17,13 +16,40 @@ import Image from "next/image"
 import { Nunito } from "next/font/google";
 import { AvatarProfile } from "@/pages/components/avatar";
 import { RatingStarts } from "@/pages/components/ratingStars";
-import { BooksContent, BooksMainConteiner } from "../../styles";
-import { AssessmentContent } from "@/pages/components/favoviteBooks/styles";
-import { CreateAreview } from "@/pages/components/createAreview";
+import { AssessmentContent, BooksContent, BooksMainConteiner } from "../../styles";
+import { GetServerSideProps } from "next";
+import { useContext, useEffect } from "react";
+import { prisma } from "@/lib/prisma";
+import { BooksContext } from "@/context/dataContext";
+import { CreateAreReview } from "../createAreReview";
+import { ModalSign } from "./components/modalSign";
+
+const dayjs = require('dayjs');
+require('dayjs/locale/pt-br');
+require('dayjs/plugin/relativeTime');
+
+dayjs.locale('pt-br');
+dayjs.extend(require('dayjs/plugin/relativeTime'));
 
 const nunito = Nunito({
   subsets: ["latin"],
 });
+
+interface RatingProps {
+  id: string,
+  rate: number,
+  description: string
+  created_at: Date,
+  book_id: string;
+  user_id: string;
+  user: {
+    id: string,
+    name: string,
+    avatar_url: string,
+    email: string,
+    created_at: Date,
+  }
+}
 
 interface ModalProps {
   id: string;
@@ -32,14 +58,22 @@ interface ModalProps {
   totalPages: number;
   author: string;
   category?: string[];
+  ratings: RatingProps[]
 }
 
 export interface ModalType {
-  book?: ModalProps
+  book: string;
   yourEvaluation: string[] | string;
 }
 
 export function Modal({ book, yourEvaluation }: ModalType) {
+  const {
+    dataExplorer,
+  } = useContext(BooksContext);
+
+  const find = dataExplorer.filter((books: any) => books.id === book);
+
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay />
@@ -48,16 +82,17 @@ export function Modal({ book, yourEvaluation }: ModalType) {
         <BookDetail>
           <BookContent>
             <BooksContent typeFor={"modal"} className={`${nunito.className}`}>
-              <Image src={book?.image!} width={108} height={152} alt="" />
+              <Image src={find[0] !== undefined ? find[0].image : ""} width={108} height={152} alt="" />
               <BooksMainConteiner typeFor={"modal"}>
                 <header>
-                  <strong>{book?.title}</strong>
-                  <span>{book?.author}</span>
+                  <strong>{find[0] !== undefined ? find[0].title : ""}</strong>
+                  <span>{find[0] !== undefined ? find[0].author : ""}</span>
                 </header>
 
                 <AssessmentContent>
-                  <RatingStarts size="1rem" />
-                  <p>{`${3} avaliações`}</p>
+                  <RatingStarts rate={find[0] !== undefined ? find[0].totalRating : 0} size="1rem" />
+                  <p>{`${find[0] !== undefined ? find[0].ratings.length : ""} avaliações`}</p>
+
                 </AssessmentContent>
               </BooksMainConteiner>
             </BooksContent>
@@ -67,7 +102,7 @@ export function Modal({ book, yourEvaluation }: ModalType) {
                 <BookmarkSimple />
                 <article>
                   <p>Categoria</p>
-                  <strong>Computação, educação</strong>
+                  <strong>{find[0] !== undefined ? find[0].categories[0].name : ""}</strong>
                 </article>
               </ContentInfo>
 
@@ -75,7 +110,7 @@ export function Modal({ book, yourEvaluation }: ModalType) {
                 <BookOpen />
                 <article>
                   <p>Paginas</p>
-                  <strong>{book?.totalPages}</strong>
+                  <strong>{find[0] !== undefined ? find[0].totalPages : ""}</strong>
                 </article>
               </ContentInfo>
             </Infos>
@@ -85,68 +120,40 @@ export function Modal({ book, yourEvaluation }: ModalType) {
         <AssessmentsContent>
           <header>
             <p>Avaliações</p>
-            <button>Avaliar</button>
+            <Dialog.Root >
+              <Dialog.Trigger>
+                <button>Avaliar</button>
+              </Dialog.Trigger>
+              <ModalSign/>
+            </Dialog.Root>
           </header>
 
-          <CreateAreview yourEvaluation={yourEvaluation} book={book} />
 
+          <CreateAreReview yourEvaluation={yourEvaluation} book={book} />
 
-          <Assessments>
-            <header>
-              <Profile>
-                <AvatarProfile image="" hideProfile="false" />
-                <cite>
-                  <strong>Vinicius Ferreira</strong>
-                  <time>Hoje</time>
-                </cite>
-              </Profile>
+          {find[0] && find[0].ratings.map((rating) => (
 
-              <RatingStarts size="1rem" />
-            </header>
+            <Assessments>
+              <header>
+                <Profile>
+                  <AvatarProfile image={rating.user.avatar_url} hideProfile="false" />
+                  <cite>
+                    <strong>{rating.user.name}</strong>
+                    <time>{dayjs(rating.created_at).fromNow()}</time>
+                  </cite>
+                </Profile>
 
-            <body>
-              <p>Tortor sed elementum dolor sed nunc elementum enim viverra. Massa tempus ac a adipiscing at cursus senectus dui libero. Elementum lacus enim viverra arcu at ut amet convallis. Maecenas ac fringilla blandit risus nibh praesent sagittis dapibus netus. Dignissim sed congue sed vel faucibus purus dapibus pellentesque.</p>
-            </body>
-          </Assessments>
+                <RatingStarts rate={rating.rate} size="1rem" />
+              </header>
 
-          <Assessments>
-            <header>
-              <Profile>
-                <AvatarProfile image="" hideProfile="false" />
-                <cite>
-                  <strong>Vinicius Ferreira</strong>
-                  <time>Hoje</time>
-                </cite>
-              </Profile>
-
-              <RatingStarts size="1rem" />
-            </header>
-
-            <body>
-              <p>Tortor sed elementum dolor sed nunc elementum enim viverra. Massa tempus ac a adipiscing at cursus senectus dui libero. Elementum lacus enim viverra arcu at ut amet convallis. Maecenas ac fringilla blandit risus nibh praesent sagittis dapibus netus. Dignissim sed congue sed vel faucibus purus dapibus pellentesque.</p>
-            </body>
-          </Assessments>
-
-          <Assessments>
-            <header>
-              <Profile>
-                <AvatarProfile image="" hideProfile="false" />
-                <cite>
-                  <strong>Vinicius Ferreira</strong>
-                  <time>Hoje</time>
-                </cite>
-              </Profile>
-
-              <RatingStarts size="1rem" />
-            </header>
-
-            <body>
-              <p>Tortor sed elementum dolor sed nunc elementum enim viverra. Massa tempus ac a adipiscing at cursus senectus dui libero. Elementum lacus enim viverra arcu at ut amet convallis. Maecenas ac fringilla blandit risus nibh praesent sagittis dapibus netus. Dignissim sed congue sed vel faucibus purus dapibus pellentesque.</p>
-            </body>
-          </Assessments>
-
+              <body>
+                <p>{rating.description}</p>
+              </body>
+            </Assessments>
+          ))}
         </AssessmentsContent>
       </DialogContent>
+
     </Dialog.Portal>
   );
 }

@@ -1,4 +1,4 @@
-import { styled } from "../../styles/stitches.config";
+import { styled } from "../../../styles/stitches.config";
 
 export const ContainerProfile = styled("div", {
   maxWidth: "90rem",
@@ -7,7 +7,8 @@ export const ContainerProfile = styled("div", {
   color: "white",
 
   "@media (max-width: 768px)": {
-    // padding: "0"
+    display: "flex",
+    flexDirection: "column",
   },
 });
 
@@ -19,7 +20,9 @@ export const ContentProfile = styled("div", {
   gap: "4rem",
 
   "@media (max-width: 768px)": {
-    all: "unset",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0rem",
   },
 });
 
@@ -29,9 +32,11 @@ export const ProfileConteiner = styled("div", {
   header: {
     display: "flex",
     gap: "0.75rem",
+    width: "calc(100% - 0.5rem)",
   },
 
   "> a": {
+    width: "100%",
     display: "flex",
     gap: "0.75rem",
     color: "$white",
@@ -42,10 +47,12 @@ export const ProfileConteiner = styled("div", {
   "@media(max-width: 768px)": {
     marginTop: "2rem",
     width: "100vw",
+    order: "2",
 
 
     header: {
       padding: "0.5rem",
+      display: "none",
     },
 
     "> a": {

@@ -1,11 +1,9 @@
 import { LiContent, NavbarCotainer } from "./styles";
 import Image from "next/image";
 import HabitosDeDesenvolvedores from "../../../../../assets/books/14-habitos-de-desenvolvedores-altamente-produtivos.png";
-import { AssessmentContent } from "@/pages/components/favoviteBooks/styles";
 import { RatingStarts } from "@/pages/components/ratingStars";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ButtonContent, DialogTrigger } from "../../styles";
-import { Modal } from "../modal";
 import Link from "next/link"
 import { useState } from "react";
 import { useRouter } from "next/router";

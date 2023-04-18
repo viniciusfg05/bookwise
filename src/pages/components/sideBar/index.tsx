@@ -8,6 +8,10 @@ import { Binoculars, ChartLineUp, User } from "@phosphor-icons/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { Nunito } from "next/font/google";
+const nunito = Nunito({
+  subsets: ["latin"],
+});
 
 interface AppProps {
   hiden: boolean;
@@ -16,9 +20,13 @@ interface AppProps {
 export function SideBar({hiden}: AppProps) {
   const session = useSession();
 
+  function handleMakeSureYouAreloggedInBeforeOfPuch() {
+
+  }
+
   const { route } = useRouter()
   return (
-    <ConteinerSideBar ifNotLoggedInHide={hiden === true ? "true" : undefined}>
+    <ConteinerSideBar ifNotLoggedInHide={hiden === true ? "true" : undefined} className={`${nunito.className}`}>
       <BackgroundSidebar />
 
       <ContentSidebar>
@@ -41,15 +49,24 @@ export function SideBar({hiden}: AppProps) {
 
           </LiContent>
 
-          <LiContent activeUrl={route === "/profile" && "true"}>
-            <Link href={"/profile"}>
-              <User size={24} />
-              Profile
-            </Link>
+          {session.data?.user ? (
+            <LiContent activeUrl={route === "/profile/[slug]" && "true"}>
+              <Link href={{
+                pathname: "/profile/[slug]",
+                query: {slug: session.data?.user.id, search: ""}
+              }}>
+                <User size={24} />
+                Profile
+              </Link>
 
-          </LiContent>
+            </LiContent>
+          ): (
+            <LiContent>
+              <br />
+            </LiContent>
+            
+          )}
         </ul>
-
         <SignOutLogin />
       </ContentSidebar>
     </ConteinerSideBar>

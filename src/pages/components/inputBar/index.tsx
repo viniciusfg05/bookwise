@@ -1,5 +1,5 @@
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import { ErrosStyles, Input, InputConteiner } from "./styles";
+import { MagnifyingGlass, X } from "@phosphor-icons/react";
+import { ClearSearch, Container, ErrosStyles, Input, InputConteiner } from "./styles";
 import { useSession, } from "next-auth/react";
 import { useRouter } from "next/router";
 import { z } from "zod";
@@ -19,25 +19,64 @@ const InputFormSchema = z.object({
 type FormData = z.infer<typeof InputFormSchema>;
 
 export function InputBar({pageExplorer, pageProfile, placeholder}: InputProps) {
-  const session = useSession();
   const router = useRouter();
 
-  const {register, handleSubmit, formState: { errors }} = useForm<FormData>({
+  const {register, handleSubmit, formState: { errors }, reset} = useForm<FormData>({
     resolver: zodResolver(InputFormSchema),
   })
 
   function handleSubmitData(data: FormData) {
-    console.log(data)
+    console.log(router.route)
 
-    router.push(`?search=${data.input}`)
+    if(router.route === "/profile/[slug]") {
+      router.push({
+        pathname: `[slug]`,
+        query: { slug: router.query.slug, search: `${data.input}` },
+      })      
+    }
+
+    if(router.route === "/explorer") {
+      router.push({
+        pathname: ``,
+        query: {search: `${data.input}` },
+      })      
+    }
+  }
+
+  function handleClearQuery() {
+    reset()
+
+    if(router.route === "/explorer") {
+      router.push({
+        pathname: ``,
+        query: {search: `` },
+      })      
+    }
+
+    if(router.route === "/profile/[slug]") {
+      router.push({
+        pathname: `[slug]`,
+        query: { slug: router.query.slug, search: `${""}` },
+      })   
+    }
+
+
   }
 
   return (
-    <InputConteiner willBeDisplayedIn={pageExplorer ||  pageProfile  } onSubmit={handleSubmit(handleSubmitData)}>
-      <Input placeholder={placeholder} {...register("input")}/>
-      { errors.input?.message && <ErrosStyles>Minimo 3 caractreres</ErrosStyles> }
-      <MagnifyingGlass />
-    </InputConteiner>
+    <Container>
+      <InputConteiner willBeDisplayedIn={pageExplorer || pageProfile  } onSubmit={handleSubmit(handleSubmitData)}>
+        <Input placeholder={placeholder} {...register("input")}/>
+        { errors.input?.message && <ErrosStyles>Minimo 3 caractreres</ErrosStyles> }
+
+        <MagnifyingGlass />
+      </InputConteiner>
+      {router.query.search && 
+        <ClearSearch onClick={() => handleClearQuery()}>
+          <X />
+          {router.query.search}
+        </ClearSearch >  
+      }
+    </Container>
   )
 }
-

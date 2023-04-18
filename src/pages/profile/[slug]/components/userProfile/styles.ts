@@ -1,4 +1,4 @@
-import { styled } from "../../../../styles/stitches.config";
+import { styled } from "../../../../../styles/stitches.config";
 
 export const UserProfileContainer = styled("div", {
   marginTop: "9.125rem",
@@ -7,7 +7,11 @@ export const UserProfileContainer = styled("div", {
   width: "19.25rem",
 
   "@media(max-width: 768px)": {
-    marginTop: "3rem",
+    order: "1",
+    marginTop: "1rem",
+    width: "100vw",
+    marginLeft: "0",
+    marginRight: "0",
   }
 })
 
@@ -52,8 +56,30 @@ export const UserProfileContent = styled("div", {
   },
 
   "@media(max-width: 768px)": {
+    width: "100vw",
     borderLeft: "0",
-    borderTop: "1px solid $gray600",
+    height: "15rem",
+    padding: "0.5rem",
+    borderBottom: "1px solid $gray600",
+
+    ul: {
+      all: "unset",
+      display: "flex",
+      alignItems: "center",
+      width: "100vw",
+
+      li: {
+        all: "unset",
+        display: "flex",
+        gap: "0.5rem",
+        alignItems: "center",
+
+
+        "&:not(:first-of-type)": {
+          marginTop: "0",
+        },
+      }
+    }
   }
 })
 
@@ -80,7 +106,23 @@ export const ProfileStyled = styled("div", {
   },
 
   "@media(max-width: 768px)": {
-    marginTop: "3rem"
+    marginTop: "1rem",
+    flexDirection: "row",
+    alignItems: "center",
+
+    cite: {
+      marginTop: "0",
+      marginLeft: "0.5rem",
+      textAlign: "start",
+
+      strong: {
+        fontSize: "1.125rem",
+      },
+
+      p: {
+        fontSize: "0.75rem",
+      }
+    }
   }
 })
 
@@ -92,4 +134,15 @@ export const Divider = styled("div", {
   display: "flex",
   margin: "2rem auto",
   justifyContent: "center"
+})
+
+export const HeaderProfile = styled("header", {
+  display: "flex",
+  gap: "0.5rem",
+  marginTop: "1rem",
+  padding: "0 0.5rem",
+
+  "@media(min-width: 768px)": {
+    display: "none"
+  }
 })

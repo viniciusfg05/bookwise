@@ -4,6 +4,13 @@ import { GlobalStyles } from "../styles/global";
 import { SideBar } from "./components/sideBar";
 import { ContentStart, ContainerHome } from "./start/styles";
 import { AppConteiner, AppContent } from "./styles";
+import "dayjs/locale/pt-br";
+const dayjs = require('dayjs');
+require('dayjs/locale/pt-br');
+require('dayjs/plugin/relativeTime');
+
+dayjs.locale('pt-br');
+dayjs.extend(require('dayjs/plugin/relativeTime'));
 
 import { Nunito } from "next/font/google";
 const nunito = Nunito({
@@ -11,6 +18,7 @@ const nunito = Nunito({
 });
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { BooksProvider } from "@/context/dataContext";
 GlobalStyles();
 
 export default function MyApp({
@@ -20,15 +28,19 @@ export default function MyApp({
   const { route } = useRouter()
 
   return (
+    <BooksProvider >
+
       <SessionProvider session={session}>
-      <AppConteiner>
+        <AppConteiner>
 
-        <AppContent className={`${nunito.className}`}>
-          <SideBar hiden={route === "/" ? true : false}/>
+          <AppContent className={`${nunito.className}`}>
+            <SideBar hiden={route === "/" ? true : false} />
 
-          <Component {...pageProps} />
-        </AppContent>
-      </AppConteiner>
+            <Component {...pageProps}  className={`${nunito.className}`}/>
+          </AppContent>
+        </AppConteiner>
       </SessionProvider>
+    </BooksProvider>
+
   );
 }

@@ -28,13 +28,30 @@ export const ExplorerConteiner = styled("div", {
   display: "flex",
   flexDirection: "column",
 
+  "section": {
+    display: "flex",
+    alignItems: "center",
+    gap: "1rem",
+    // marginBottom: "1.5rem",
+  },
+
   "> header": {
     marginTop: "4.56rem",
-    marginBottom: "3.375rem",
+    justifyContent: "space-between",
+    marginBottom: "1rem",
     gap: "1rem",
     display: "flex",
     fontSize: "1.125rem",
     alignItems: "center",
+
+    svg: {
+      width: "1.5rem",
+      height: "1.5rem",
+    },
+
+    h2: {
+      fontSize: "1.5rem",
+    }
   },
   
 
@@ -77,10 +94,16 @@ export const ExplorerConteiner = styled("div", {
   "@media (max-width: 768px)": {
     paddingLeft: "0.5rem",
     width: "100vw",
+
+    section: {
+      marginBottom: "1rem",
+    },
     
     "> header": {
       marginTop: "1.5rem",
       marginBottom: "1.5rem",
+      flexDirection: "column",
+      alignItems: "flex-start",
     },
 
     nav: {
@@ -147,9 +170,10 @@ export const BooksContainer = styled("div", {
 
     "> section": {
       display: "flex",
+      flexDirection: "column",
       // maxWidth: "9000px",
       gap: "1.25rem",
-      width: `calc((100%) * ${4})`,
+      width: `calc(100% - 0.5rem)`,
       marginTop: "2rem",
       overflow: "auto",
     },
@@ -187,6 +211,7 @@ export const BooksContent = styled("div", {
 
         "@media(max-width: 768px)": {
           gap: "0.5rem",
+          width: "100%",
           marginBottom: "0",
         },
       },
@@ -214,6 +239,27 @@ export const BooksContent = styled("div", {
     },
   },
 })
+
+export const AssessmentContent = styled("div", {
+  button: {
+    all: "unset",
+    cursor: "pointer",
+    lineHeight: 0,
+
+    svg: {
+      color: "$purple100",
+    },
+  },
+
+  p: {
+    color: "$gray400",
+    fontSize: "0.875rem",
+    fontWeight: "normal",
+    marginTop: "0.3rem",
+  },
+
+  "@media(max-width: 768px)": {},
+});
 
 export const BooksMainConteiner = styled("div", {
   variants: {

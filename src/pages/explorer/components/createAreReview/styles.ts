@@ -1,8 +1,8 @@
-import { styled } from "../../../styles/stitches.config"
+import { styled } from "../../../../styles/stitches.config"
 
 export const TextareaContainer = styled("div", {
   width: "100%",
-  height: "13.5rem"
+  height: "100%",
 })
 
 export const Textarea = styled("textarea", {
@@ -31,8 +31,9 @@ export const ButtonTextara = styled("div", {
   justifyContent: "end",
   width: "100%",
   marginTop: "0.75rem",
-
+  
   button: {
+    cursor: "pointer",
     display: "flex",
     background: "$gray600",
     borderRadius: "$sm",
@@ -41,8 +42,17 @@ export const ButtonTextara = styled("div", {
     height: "2.5rem",
     border: "none",
     lineHeight: "0",
+    transition: "0.3s",
 
+    "&:hover": {
+      background: "$gray500",
 
+    },
+
+    "&:disabled": {
+      cursor: "not-allowed",
+      opacity: "0.6"
+    },
 
     svg: {
       width: "1.5rem",
@@ -79,7 +89,7 @@ export const Profile = styled("div", {
 
 export const ToAssessContainer = styled("form", {
   width: "100%",
-  height: "20.5rem",
+  height: "100%",
   background: "$gray700",
   borderRadius: "$md",
   marginBottom: "1rem",

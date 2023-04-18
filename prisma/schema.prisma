@@ -57,7 +57,7 @@ model Category {
 model Rating {
   id          String   @id @default(uuid())
   rate        Int
-  description String
+  description String   @db.Text
   created_at  DateTime @default(now())
 
   book    Book   @relation(fields: [book_id], references: [id])

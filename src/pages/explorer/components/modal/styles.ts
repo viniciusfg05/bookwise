@@ -116,6 +116,7 @@ export const AssessmentsContent = styled("div", {
       background: "transparent",
       color: "$purple100",
       fontSize: "1",
+      cursor: "pointer"
     },
 
     p: {

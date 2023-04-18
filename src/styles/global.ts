@@ -10,7 +10,8 @@ export const GlobalStyles = globalCss({
 
   body: {
     background: "$gray800",
-    
+    fontFamily: "Nunito",
+
     "&::-webkit-scrollbar": {
       width: "7px",
     },

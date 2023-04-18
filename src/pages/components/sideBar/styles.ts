@@ -60,28 +60,31 @@ export const ContentSidebar = styled("div", {
     },
 
     ul: {
-      fontSize: "0.875rem",
-      flexDirection: "row ",
-      width: "100%",
-      margin: "0",
-      marginTop: "0.9rem",
-      gap: "0.5rem",
-      justifyContent: "space-between",
 
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      width: "100%",
+      marginTop: "1.5rem",
 
       li: {
         
         a: {
-          gap: "0.3rem",
 
           svg: {
-            marginRight: "0",
             width: "20px",
           },
         }
       }
     }
+  },
+
+  "@media (max-width: 328px)": {
+    ul: {
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gap: "0.5rem"
+    }
   }
+
 })
 
 export const LiContent = styled("li", {
@@ -109,51 +112,61 @@ export const LiContent = styled("li", {
   },
 
   "@media (max-width: 768px)": {
-    paddingBottom: "0.5rem",
-    alignItems: "start",
+    paddingLeft: "0.5rem",
+    display: "flex",
+    alignItems: "center",
+  },
+
+  "@media (max-width: 328px)": {
+    padding: "0",
 
   },
+
   variants: {
     activeUrl: {
       true: {
+        position: "relative",
         alignItems: "center",
-        borderRadius: "9999px",
-        borderLeft: "4px solid",
-        height: "1rem",
-        borderImage: "linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)  1",
+        borderRadius: "$full",
+
+        "&::after": {
+          position: "absolute",
+          alignItems: "center",
+          content: "",
+          borderLeft: "4px solid",
+          height: "1rem",
+          borderImage: "linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)  1",
+          left: 0,
+        },
+
         a: {
           color: "$white",
-
         },
         
         "@media (max-width: 768px)":{
-          all: "unset",
-
           "&::after": {
+            position: "absolute",
+            alignItems: "center",
             content: "",
-            height: "0",
-            width: "0",
+            borderLeft: "4px solid",
+            heght: "1px",
+            width: "1rem",
+            borderImage: "linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)  1",
+            left: 0,
           },
-          
-          a: {
-            borderBottom: "3px solid #7FD1CC",
-            paddingBottom: "0.4rem",
-            color: "$white",
-            borderRadius: "4px",
+
+          "@media (max-width: 328px)":{
+            "&::after": {
+              border: "0"
+            },
           }
-        }
+        },
+
       },
     },
     mobile: {
       true: {
-        "&::after": {
-          content: "",
-          background: "linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)",
-          height: "0",
-          width: "0",
 
-        },
-        borderBottom: "4px solid #7FD1CC",
       }
     }
   }

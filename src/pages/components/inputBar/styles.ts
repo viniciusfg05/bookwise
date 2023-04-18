@@ -1,16 +1,30 @@
 import { styled } from "../../../styles/stitches.config"
 
+export const Container = styled("div", {
+
+})
+
 export const InputConteiner = styled("form", {
   variants: {
     willBeDisplayedIn: {
       pageProfile: {
-        width: "100%",
+        width: "calc(100% - 1rem)",
         display: "flex",
+
+        "@media (max-width: 768px)": {
+          width: "calc(100% - 1rem)",
+          marginLeft: "0.5rem",
+        }
       },
       pageExplorer: {
         width: "27.0625rem",
         marginLeft: "auto",
         display: "flex",
+
+        "@media (max-width: 768px)": {
+          width: "calc(100vw - 1rem)",
+          marginLeft: "0",
+        }
       },
     }
   },
@@ -46,7 +60,7 @@ export const InputConteiner = styled("form", {
   },
 
   "@media(max-width: 768px)": {
-    margin: "0.5rem",
+    margin: "0",
     width: "calc(100% - 1rem)",
   },
 });
@@ -63,3 +77,37 @@ export const ErrosStyles = styled("p", {
   whiteSpace: "nowrap",
   marginRight: "1rem"
 });
+
+export const ClearSearch = styled("button", {
+  all: "unset",
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  marginRight: "1rem",
+  cursor: "pointer",
+  color: "$gray300",
+  transition: "0.3s",
+  border: "1px solid $gray500",
+  borderRadius: "$full",
+  padding: "0.2rem 0.5rem 0.2rem 0.5rem",
+  marginTop: "-1rem",
+  marginBottom: "2rem",
+  
+  svg: {
+    color: "$gray300",
+    width: "1rem",
+  },
+
+  "&:hover": {
+  color: "$purple100",
+
+    svg: {
+      color: "$purple100",
+    }
+  },
+
+  "@media (max-width: 768px)": {
+    marginTop: "1rem",
+    marginLeft: "0.5rem",
+  }
+})

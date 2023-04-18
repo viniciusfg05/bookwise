@@ -29,11 +29,11 @@ export default function Home() {
   const session = useSession();
   
   async function handleConnectGoogle() {
-    await signIn("google");
+    await signIn("google", {callbackUrl: "/start"});
   }
 
   async function handleConnectGitHub() {
-    await signIn("gitHub");
+    await signIn("github", {callbackUrl: "/start"});
   }
 
   

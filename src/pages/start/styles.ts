@@ -9,6 +9,7 @@ export const ContainerHome = styled("div", {
   color: "white",
 
   "@media (max-width: 768px)": {
+
     // padding: "0"
   },
 })
@@ -21,7 +22,9 @@ export const ContentStart = styled("div", {
   gap: "4rem",
 
   "@media (max-width: 768px)": {
-    all: "unset"
+    all: "unset",
+    display: "flex",
+    flexDirection: "column",
   }
 })
 

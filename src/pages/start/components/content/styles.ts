@@ -6,13 +6,18 @@ export const ContentStart = styled("div", {
   height: "100%",
 
   "@media (max-width: 768px)": {
-    all: "unset",
   },
 });
 
 export const ContainerContent = styled("div", {
   width: "100%",
   position: "relative",
+  display: "flex",
+  flexDirection: "column",
+
+  "@media (max-width: 768px)": {
+    order: "2",
+  }
 });
 
 export const ContentContent = styled("div", {
@@ -30,6 +35,7 @@ export const ContentContent = styled("div", {
 
   "@media(max-width: 768px)": {
     "> header": {
+      display: "none",
       marginTop: "2.50rem",
       paddingLeft: "0.5rem",
     },
@@ -51,10 +57,11 @@ export const AssessmentManis = styled("div", {
   "@media(max-width: 768px)": {
     paddingLeft: "0.5rem",
     marginBottom: "2.5rem",
-    width: "100vw",
 
     "> header": {
       marginTop: "1rem",
+      width: "calc(100vw - 1rem)",
+
     },
 
     main: {

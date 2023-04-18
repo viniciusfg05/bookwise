@@ -1,4 +1,4 @@
-import { styled } from "../../../../styles/stitches.config";
+import { styled } from "../../../../../styles/stitches.config";
 
 export const AssessmentsTheUsersContainer = styled("div", {
   display: "flex",
@@ -6,11 +6,15 @@ export const AssessmentsTheUsersContainer = styled("div", {
 
   "@media(max-width: 768px)": {
     padding: "0.5rem",
+    order: "2"
   },
 });
 
 export const AssessmentsTheUsersContent = styled("div", {
+  width: "100%",
+
   "@media(max-width: 768px)": {
+    width: "100%",
     display: "flex",
     overflow: "auto",
   },
@@ -18,14 +22,18 @@ export const AssessmentsTheUsersContent = styled("div", {
 });
 
 export const MainContainer = styled("div", {
-
+  
   "@media(max-width: 768px)": {
+    width: "100%",
     display: "flex",
+    flexDirection: 'column',
     marginRight: "1rem",
+    padding: "0",
   },
 });
 
 export const MainContent = styled("div", {
+
   time: {
     fontSize: "0.875rem",
     color: "$gray300",
@@ -62,6 +70,8 @@ export const MainContent = styled("div", {
   },
 
   "@media(max-width: 768px)": {
+    width: "calc(100vw - 1rem)",
+
     section: {
       marginBottom: "0.5rem",
     }

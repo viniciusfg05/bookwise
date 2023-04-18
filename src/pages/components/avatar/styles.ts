@@ -10,8 +10,9 @@ export const AvataRoot = styled((Avatar.Root), {
   userSelect: 'none',
   width: "2.81rem",
   height: "2.81rem",
-  borderRadius: '100%',
-  backgroundColor: "blackA.blackA3",
+  borderRadius: '$full',
+  background: "linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)",
+
 
   variants: {
     mobile: {
@@ -26,10 +27,16 @@ export const AvataRoot = styled((Avatar.Root), {
 })
 
 export const AvataImage = styled((Avatar.Image), {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   width: '100%',
-  height: '100%',
+  height: "100%",
+  padding: "0.10rem",
   objectFit: 'cover',
-  borderRadius: 'inherit',
+  borderRadius: '$full',
+  backgroundColor: "linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)  1",
+
 })
 
 export const AvataFallback = styled((Avatar.Fallback), {

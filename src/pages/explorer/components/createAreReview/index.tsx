@@ -128,4 +128,3 @@ export function CreateAreReview({ book, yourEvaluation }: ModalType) {
     <></>
   )
 }
-

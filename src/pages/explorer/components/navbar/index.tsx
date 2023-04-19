@@ -41,7 +41,6 @@ export function Navbar({ allCategorie }: CategoriesProps) {
   };
 
   const router = useRouter()
-  console.log(router.query.categorie)
   return (
     <NavbarCotainer>
       <ul
@@ -50,7 +49,6 @@ export function Navbar({ allCategorie }: CategoriesProps) {
         //@ts-ignore
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-      // onMouseDownCapture={() => console.log("out")}
       >
         <Link href={``} style={{ textDecoration: "none" }}>
           <LiContent variantsStyle={router.query.categorie === undefined ? "true" : "false"}>

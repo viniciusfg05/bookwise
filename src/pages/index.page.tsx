@@ -25,6 +25,11 @@ import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { api } from "@/lib/axios";
 
+import { Nunito } from "next/font/google";
+const nunito = Nunito({
+  subsets: ["latin"],
+});
+
 export default function Home() {
   const session = useSession();
   
@@ -38,7 +43,7 @@ export default function Home() {
 
   
   return (
-    <ContainerHome>
+    <ContainerHome className={`${nunito.className}`}>
       <ContentHome>
         <ContentBg>
           <ContentImage>

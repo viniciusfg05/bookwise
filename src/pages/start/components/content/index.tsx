@@ -4,11 +4,14 @@ import { YourReading } from "../yourReading";
 import { MostRecentReviews } from "../mostRecentReviews";
 import { StartTypes } from "../../index.page";
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Loading from "@/pages/components/loading";
 
-export function Content({allRating, firstRating, highestRatedBooks}: StartTypes) {
+export function Content({ allRating, firstRating, highestRatedBooks }: StartTypes) {
   const session = useSession()
 
-  if(!session.data?.user) {
+
+  if (!session.data?.user) {
     return (
       <ContainerContent>
         <ContentContent>
@@ -16,12 +19,12 @@ export function Content({allRating, firstRating, highestRatedBooks}: StartTypes)
             <ChartLineUp size={32} color="#50B2C0" />
             <h2>Inicio</h2>
           </header>
-  
+
           <AssessmentManis>
             <header>Avaliações mais recentes</header>
-  
-            <MostRecentReviews allRating={allRating}/>
-  
+
+            <MostRecentReviews allRating={allRating} />
+
           </AssessmentManis>
         </ContentContent>
       </ContainerContent>
@@ -36,12 +39,15 @@ export function Content({allRating, firstRating, highestRatedBooks}: StartTypes)
           <h2>Inicio</h2>
         </header>
 
-        <YourReadingsConteiner>
-          <header>Sua última leitura</header>
+        {firstRating == null ? (
+          <p></p>
+        ) : (
+          <YourReadingsConteiner>
+            <header>Sua última leitura</header>
 
-          <YourReading firstRating={firstRating!} 
-          />
-        </YourReadingsConteiner>
+            <YourReading firstRating={firstRating} />
+          </YourReadingsConteiner>
+        )}
 
         <AssessmentManis>
           <header>Avaliações mais recentes</header>

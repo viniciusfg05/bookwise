@@ -165,7 +165,7 @@ export const BooksContainer = styled("div", {
   },
 
   "@media (max-width: 768px)": {
-    overflow: "auto",
+    // overflow: "auto",
     width: "100%",
 
     "> section": {
@@ -182,6 +182,9 @@ export const BooksContainer = styled("div", {
 
 export const BooksContent = styled("div", {
   border: "2px solid $gray700",
+  position: "relative",
+  objectFit: "cover",
+  overflow: "hidden",
   
   variants: {
     typeFor: {
@@ -325,6 +328,29 @@ export const DialogContent = styled(Dialog.Content, {})
 export const DialogTitle = styled(Dialog.Title, {})
 export const DialogDescription = styled(Dialog.Description, {})
 
+
+export const IfItWasRead = styled("div", {
+  variants: {
+    toHide: {
+      true: {
+        position: "absolute",
+        top: "0",
+        right: "0",
+        background: "$green300",
+        padding: "0.25rem 0.75rem 0.25rem 0.75rem",
+      
+        p: {
+          color: "$green100",
+          fontSize: "0.75rem",
+          fontWeight: "bold",
+        }
+      },
+      false: {
+        display: "none",
+      }
+    }
+  },
+})
 
 
 

@@ -8,6 +8,8 @@ import { Nunito } from "next/font/google";
 import "dayjs/locale/pt-br";
 import dayjs from "dayjs";
 import { FavoriteBooks } from "./components/favoriteBooks";
+import Loading from "../components/loading";
+import { useEffect, useState } from "react";
 
 require('dayjs/locale/pt-br');
 require('dayjs/plugin/relativeTime');
@@ -101,6 +103,16 @@ const nunito = Nunito({
 });
 
 export default function Start({ allRating, highestRatedBooks, firstRating }: StartTypes) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // faz alguma lógica para carregar dados aqui
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <ContainerHome >
@@ -181,27 +193,35 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     })
     const obj = [LastUserRating]
 
-    const LastUserRatingFormated = obj.map(firstRating => {
-      return {
-        id: firstRating?.id,
-        rate: firstRating?.rate,
-        created_at: String(firstRating?.created_at),
-        user_id: firstRating?.user_id,
-        book_id: firstRating?.book_id,
-        description: firstRating?.description,
-        book: {
-          id: firstRating?.book.id,
-          name: firstRating?.book.name,
-          author: firstRating?.book.author,
-          summary: firstRating?.book.summary,
-          cover_url: firstRating?.book.cover_url,
-          total_pages: firstRating?.book.total_pages,
-          created_at: String(firstRating?.book.created_at),
+    if(LastUserRating === null) {
+      return null
+    } else {
+      
+      const LastUserRatingFormated = obj.map(firstRating => {
+        return {
+          id: firstRating?.id,
+          rate: firstRating?.rate,
+          created_at: String(firstRating?.created_at),
+          user_id: firstRating?.user_id,
+          book_id: firstRating?.book_id,
+          description: firstRating?.description,
+          book: {
+            id: firstRating?.book.id,
+            name: firstRating?.book.name,
+            author: firstRating?.book.author,
+            summary: firstRating?.book.summary,
+            cover_url: firstRating?.book.cover_url,
+            total_pages: firstRating?.book.total_pages,
+            created_at: String(firstRating?.book.created_at),
+          }
         }
-      }
-    })
+      })
+  
+  
+      return LastUserRatingFormated
+    }
 
-    return LastUserRatingFormated
+
   }
 
   async function PickUpTheMostPopularBooks() {

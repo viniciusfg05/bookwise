@@ -32,13 +32,7 @@ interface reviewsProps {
   id: string,
   rate: number,
   description: string,
-  created_at: any,
-  user: {
-    id: string,
-    name: string,
-    created_at: Date,
-    avatar_url: string,
-  },
+  created_at: Date,
   book: {
     id: string,
     name: string,
@@ -49,6 +43,14 @@ interface reviewsProps {
     created_at: Date,
     categorie: Array<string>,
   }
+}
+
+interface reviewsProps {
+  id: string,
+  name: string,
+  created_at: Date,
+  avatar_url: string,
+  rating: reviewsProps[]
 }
 
 export interface allRatingProps {
@@ -69,9 +71,7 @@ export interface allRatingProps {
 }
 
 interface userReviewsProps {
-  userReviews: {
-    rating: reviewsProps[]
-  },
+  userReviews: reviewsProps
   allRating: allRatingProps[]
 }
 
@@ -101,9 +101,8 @@ export default function Profile({ userReviews, allRating }: userReviewsProps) {
 
           <AssessnentsUsers userReviews={userReviews} allRating={allRating} />
         </ProfileConteiner>
-        
-        <UserProfile userReviews={userReviews} allRating={allRating}/>
 
+        <UserProfile userReviews={userReviews} allRating={allRating} />
 
       </ContentProfile>
     </ContainerProfile>
@@ -122,6 +121,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, query }
 
   const userReviews = await prisma.user.findMany({
     where: {
+      // id: "b00b528a-bdea-4090-8c15-e5b4fdef220e"
       id: String(slug)
     },
     include: {
@@ -140,18 +140,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, query }
 
   const [userReviewFormated] = userReviews.map((review) => {
     return {
+      name: review.name,
+      avatar_url: review.avatar_url,
+      created_at: review.created_at.toDateString(),
       rating: review.ratings.map((rating) => {
         return {
           id: rating.id,
           rate: rating.rate,
           description: rating.description,
           created_at: rating.created_at.toISOString(),
-          user: {
-            id: review.id,
-            name: review.name,
-            created_at: review.created_at.toISOString(),
-            avatar_url: review.avatar_url,
-          },
           book: {
             id: rating.book.id,
             name: rating.book.name,
@@ -165,9 +162,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, query }
             )),
           }
         }
-      }),
+      })
     }
   })
+
 
   const allRating = await prisma.rating.findMany({
     where: {
@@ -225,7 +223,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, query }
     }
   })
 
-  // console.log(JSON.stringify(allRatingFormated, null, 3))
   return {
     props: {
       userReviews: userReviewFormated,

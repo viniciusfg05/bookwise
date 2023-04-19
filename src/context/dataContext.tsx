@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 
 interface BooksProviderProps {
@@ -31,6 +32,7 @@ interface ExplorerProps {
   image: string,
   author: string,
   summary: string,
+  ifItWasRead: boolean;
   totalPages: number,
   id: string
   totalRating?: number;
@@ -51,11 +53,23 @@ interface BooksContextProps {
 export const BooksContext = createContext({} as BooksContextProps);
 
 export function BooksProvider({ children }: BooksProviderProps) {
+  const session = useSession()
+
   const [dataExplorer, setDataExplorer] = useState<ExplorerProps[]>([])
   const [open, setOpen] = useState(false)
 
   function setDataExplorerContext(data: ExplorerProps[]) {
-    setDataExplorer(data)
+    const formated = data.map(books => {
+      const ifItWasRead = books.ratings.some((rating) => rating.user_id === session.data?.user.id )
+      
+      return {
+        ...books,
+        ifItWasRead
+      }
+    })
+
+
+    setDataExplorer(formated)
   }
 
   function setOpenContext(boolean: boolean) {

@@ -28,19 +28,19 @@ export default function MyApp({
   const { route } = useRouter()
 
   return (
-    <BooksProvider >
 
-      <SessionProvider session={session}>
+    <SessionProvider session={session}>
+      <BooksProvider >
         <AppConteiner>
 
           <AppContent className={`${nunito.className}`}>
             <SideBar hiden={route === "/" ? true : false} />
 
-            <Component {...pageProps}  className={`${nunito.className}`}/>
+            <Component {...pageProps} className={`${nunito.className}`} />
           </AppContent>
         </AppConteiner>
-      </SessionProvider>
-    </BooksProvider>
+      </BooksProvider>
+    </SessionProvider>
 
   );
 }

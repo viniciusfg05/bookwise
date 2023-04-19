@@ -31,7 +31,6 @@ export default async function handler(
       }
     })
 
-    console.log(data.numberPages)
 
     if (!bookExists) {
 

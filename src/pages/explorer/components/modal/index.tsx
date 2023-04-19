@@ -21,8 +21,9 @@ import { GetServerSideProps } from "next";
 import { useContext, useEffect } from "react";
 import { prisma } from "@/lib/prisma";
 import { BooksContext } from "@/context/dataContext";
-import { CreateAreReview } from "../createAreReview";
+// import { CreateAreReview } from "../createAreReview";
 import { ModalSign } from "./components/modalSign";
+import { CreateAreReview } from "../createAreReview";
 
 const dayjs = require('dayjs');
 require('dayjs/locale/pt-br');

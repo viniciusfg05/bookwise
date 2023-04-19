@@ -1,6 +1,6 @@
 // stitches.config.ts
 
-import { createStitches, defaultThemeMap } from '@stitches/react';
+import { createStitches } from '@stitches/react';
 
 export const { styled, getCssText } = createStitches({
   media: {

@@ -88,7 +88,7 @@ export const ProfileStyled = styled("div", {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-
+  padding: "0 1.5rem",
 
   cite: {
     marginTop: "1.5rem",

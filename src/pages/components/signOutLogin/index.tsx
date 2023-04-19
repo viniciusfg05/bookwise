@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 export function SignOutLogin() {
   const session = useSession();
   const router = useRouter();
-    // console.log(session)
   if (session.status !== "authenticated") {
     return (
     <ConteinerFooter>

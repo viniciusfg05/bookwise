@@ -41,7 +41,6 @@ interface AssessmentsUserProps {
 
 
 export function AssessnentsUsers({ userReviews, allRating }: AssessmentsUserProps) {
-
   return (
     <AssessmentsTheUsersContainer>
       <AssessmentsTheUsersContent>

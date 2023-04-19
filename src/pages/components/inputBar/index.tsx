@@ -26,7 +26,6 @@ export function InputBar({pageExplorer, pageProfile, placeholder}: InputProps) {
   })
 
   function handleSubmitData(data: FormData) {
-    console.log(router.route)
 
     if(router.route === "/profile/[slug]") {
       router.push({

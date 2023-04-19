@@ -8,8 +8,9 @@ import {
   ContentExplorer,
   DialogTrigger,
   ExplorerConteiner,
+  IfItWasRead,
 } from "./styles";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { prisma } from "@/lib/prisma";
 import { RatingStarts } from "../components/ratingStars";
 import * as Dialog from "@radix-ui/react-dialog"
@@ -21,6 +22,8 @@ import { InputBar } from "../components/inputBar";
 import { useRouter } from "next/router";
 import { BooksContext } from "@/context/dataContext";
 import { Modal } from "./components/modal";
+import { useSession } from "next-auth/react";
+import { ParsedUrlQuery } from "querystring";
 
 
 const nunito = Nunito({
@@ -54,7 +57,8 @@ interface ExplorerProps {
   author: string,
   summary: string,
   totalPages: number,
-  id: string
+  ifItWasRead: boolean;
+  id: string,
   ratings: RatingProps[]
   categories: CategoriesProps[]
 }
@@ -71,6 +75,7 @@ export interface ExplorerTypes {
 
 export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
   const [selectBooks, setSelectBooks] = useState("")
+  const session = useSession()
 
   const {
     dataExplorer,
@@ -87,7 +92,6 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
   function handleSelectBooks(id: string) {
     setSelectBooks(id)
   }
-  console.log(dataExplorer)
   return (
     <ContainerExplorer>
       <ContentExplorer>
@@ -114,6 +118,9 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
                 <Dialog.Root key={book.id}>
                   <DialogTrigger asChild>
                     <BooksContent typeFor={"page"} className={`${nunito.className}`} onClick={() => handleSelectBooks(book.id)}>
+                      <IfItWasRead toHide={book.ifItWasRead}>
+                        <p>LIDO</p>
+                      </IfItWasRead>
                       <Image
                         src={book.image}
                         width={108}
@@ -152,7 +159,8 @@ export default function Home({ allBooks, allCategorie }: ExplorerTypes) {
 
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
   const { categorie, search } = query
 
   async function FindBooksBasedOnSearches() {

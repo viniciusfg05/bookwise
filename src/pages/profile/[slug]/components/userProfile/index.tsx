@@ -10,17 +10,11 @@ import { useSession } from "next-auth/react";
 import dayjs from "dayjs";
 import { allRatingProps } from "../../index.page";
 
-interface reviewsProps {
+interface RatingProps {
   id: string,
   rate: number,
   description: string,
   created_at: Date,
-  user: {
-    id: string,
-    name: string,
-    created_at: Date,
-    avatar_url: string,
-  },
   book: {
     id: string,
     name: string,
@@ -33,10 +27,16 @@ interface reviewsProps {
   }
 }
 
+interface reviewsProps {
+    id: string,
+    name: string,
+    created_at: Date,
+    avatar_url: string,
+    rating: RatingProps[]
+}
+
 interface UserProfileProps {
-  userReviews: {
-    rating: reviewsProps[]
-  },
+  userReviews: reviewsProps
   allRating: allRatingProps[]
 }
 
@@ -130,10 +130,10 @@ export function UserProfile({userReviews, allRating}: UserProfileProps) {
       <UserProfileContainer>
       <UserProfileContent>
         <ProfileStyled>
-          <AvatarProfile image={userReviews.rating[0].user.avatar_url} hideProfile="false"/>
+          <AvatarProfile image={userReviews.avatar_url} hideProfile="false"/>
           <cite>
-            <strong>{userReviews.rating[0].user.name}</strong>
-            <p>{dayjs(userReviews.rating[0].user.created_at).locale('pt-br').format('[Membro desde] MMMM[ de ]YYYY')}</p>
+            <strong>{userReviews.name}</strong>
+            <p>{dayjs(userReviews.created_at).locale('pt-br').format('[Membro desde] MMMM[ de ]YYYY')}</p>
           </cite>
         </ProfileStyled>
 
@@ -159,7 +159,7 @@ export function UserProfile({userReviews, allRating}: UserProfileProps) {
           <li>
             <BookmarkSimple />
             <header>
-              <strong>{mostRepeatedCategory}</strong>
+              <strong>{mostRepeatedCategory ? mostRepeatedCategory : "..."}</strong>
               <span>Categoria mais lida</span>
             </header>
           </li>

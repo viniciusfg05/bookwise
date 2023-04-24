@@ -26,6 +26,7 @@ import { useEffect } from "react";
 import { api } from "@/lib/axios";
 
 import { Nunito } from "next/font/google";
+import router from "next/router";
 const nunito = Nunito({
   subsets: ["latin"],
 });
@@ -39,6 +40,10 @@ export default function Home() {
 
   async function handleConnectGitHub() {
     await signIn("github", {callbackUrl: "/start"});
+  }
+
+  async function handleSignVisitor() {
+    await router.push("/start")
   }
 
   
@@ -70,7 +75,7 @@ export default function Home() {
                 Entrar com Github
               </ButtonStyles>
 
-              <ButtonStyles>
+              <ButtonStyles onClick={() => handleSignVisitor()}>
                 <Image src={JetLogin} alt="" />
                 Acessar como visitante
               </ButtonStyles>
